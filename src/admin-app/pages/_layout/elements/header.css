@@ -1,0 +1,49 @@
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css');
+
+.nine-x-gray {
+   background-color:darkgoldenrod;
+}
+
+@media (min-width: 768px) {
+  .md\:w-60 {
+    width: 15rem;
+  }
+}
+
+.text-yellow-600{
+  color: black;
+}
+
+#sidebar {
+  /* min-width: 250px; */
+  /* max-width: 250px; */
+  /* background: #424242; */
+  color:rgb(176, 54, 54);
+  /* transition: all 6.3s; */
+  background-color: rgb(0, 0, 0);
+}
+#sidebar.active {
+  /* min-width: 80px; */
+  /* max-width: 80px; */
+  /* text-align: center */
+  transition: all 2.3s;
+
+}
+
+.svg-t{
+  color:"black"
+}
+
+
+@media (max-width: 640px) {
+  .mobile-style {
+    width: 78px;
+    text-align: center;
+    text-wrap-mode: wrap;
+  }
+}
+
+.bg-active{
+  background-color: "rgb(134 100 226 / 82%)" ;
+ 
+}
