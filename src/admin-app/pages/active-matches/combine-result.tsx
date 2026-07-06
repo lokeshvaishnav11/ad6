@@ -19,7 +19,7 @@ const GetAllFancytwo = () => {
   try {
     const [res1, res2] = await Promise.all([
       
-      axios.get(`https://api.11wickets.pro/api/active-fancies-new?matchId=${matchId}&gtype=session`),
+      axios.get(`https://api.sixrun.pro/api/active-fancies-new?matchId=${matchId}&gtype=session`),
       axios.get(`https://api.crickhero.com/api/active-fancies-new?matchId=${matchId}&gtype=session`)// dusri API
       // yaha tu crickhero wali bhi replace/add kar sakta h
     ]);
@@ -79,7 +79,7 @@ const onSubmitHandle = async (e: FormEvent<HTMLFormElement>) => {
 
       // new GET API
       axios.get(
-        `https://api.11wickets.pro/api/result-fancy-new?marketId=${fancy.marketId}&matchId=${fancy.matchId}&result=${result}`
+        `https://api.sixrun.pro/api/result-fancy-new?marketId=${fancy.marketId}&matchId=${fancy.matchId}&result=${result}`
       ),
        axios.get(
         `https://api.crickhero.com/api/result-fancy-new?marketId=${fancy.marketId}&matchId=${fancy.matchId}&result=${result}`

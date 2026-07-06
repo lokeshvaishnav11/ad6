@@ -1740,7 +1740,7 @@ const Header = () => {
                       activeMenu === "Report" ? "bg-active" : ""
                     } `}
                   >
-                    <a href="https://olddata.11wickets.pro"
+                    <a href="https://olddata.sixrun.pro"
                     >
                       <LocalOfferIcon className="text-warning " />
                       <b className="md:text-lg text-xs font-medium text-white">

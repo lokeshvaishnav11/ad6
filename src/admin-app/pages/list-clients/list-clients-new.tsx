@@ -1531,8 +1531,8 @@ const ListClients = () => {
                               <a
                                 href={`https://wa.me/?text=${encodeURIComponent(
                                   user.username?.startsWith("C")
-                                    ? `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLink:\nClient Link: https://11wickets.pro`
-                                    : `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLinks:\nAdmin Link: https://11wickets.pro/admin\nClient Link: https://11wickets.pro`
+                                    ? `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLink:\nClient Link: https://sixrun.pro`
+                                    : `Login Details:\nUsername: ${user.username}\nPassword: ${user.password}\n\nLinks:\nAdmin Link: https://sixrun.pro/admin\nClient Link: https://sixrun.pro`
                                 )}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
