@@ -270,7 +270,7 @@
   .book-badge {
     display: flex;
     align-items: center;
-    gap: 8px;
+    /* gap: 8px; */
     padding: 8px 12px;
     border-radius: 8px;
     font-weight: 600;

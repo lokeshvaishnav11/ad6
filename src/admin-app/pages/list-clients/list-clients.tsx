@@ -919,7 +919,7 @@ const ListClients = () => {
                     </div> */}
                   </div>
                   <div className="float-right   col-md-4 grid gap-2 ">
-                    <p className="text-right d-flex items-center justify-between bg-black p-2 rounded ">
+                    <p className="text-right d-flex items-center justify-between p-2 rounded " style={{background:"rgb(5, 42, 81)"}}>
                       <p className="text-xl text-white">
                         {newtype == "sadmin"
                           ? "Sub Admin"
@@ -1053,7 +1053,8 @@ const ListClients = () => {
                         Commission{" "}
                       </th>
                     </tr>
-                    <tr>
+                    <tr style={{    background:" rgb(5, 42, 81)",
+    color: "white"}}>
                       {/* <th>
                         <input
                           type={'checkbox'}
@@ -1205,7 +1206,7 @@ const ListClients = () => {
                                   {user?.isLogin ? (
                                     <LockOpenIcon
                                       style={{
-                                        backgroundColor: "green",
+                                        backgroundColor: "#28a745",
                                         color: "white",
                                         borderRadius: "2px",
                                         padding: "2px",
@@ -1710,7 +1711,7 @@ const ListClients = () => {
                                 }}
                               >
                                 <img
-                                  src="https://admin.7wickets.co/assets/images/whatsapp.png"
+                                  src="https://img.magnific.com/premium-vector/whatsapp-vector-logo-icon-logotype-vector-social-media_901408-406.jpg?semt=ais_hybrid&w=740&q=80"
                                   alt="WhatsApp"
                                   style={{
                                     width: "20px",
@@ -1843,7 +1844,7 @@ const ListClients = () => {
                                   }}
                                   title="View Exposure Details"
                                 >
-                                  {finalExposer(user?.balance)}
+                              <i className="fas fa-eye"></i> {finalExposer(user?.balance)}
                                 </button>
                               </td>
                             ) : (

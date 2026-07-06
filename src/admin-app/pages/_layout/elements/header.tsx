@@ -649,10 +649,10 @@ const Header = () => {
       <header className="">
         <div
           className="flex newmargin  justify-between md:justify-end p-2  bg-gray-header"
-          style={{ backgroundColor: "#000", color: "black" }}
+          style={{ backgroundColor: "#052a51", color: "black" }}
         >
           <div
-            className="side-menu-buttonn md:hidden ml-2 "
+            className="side-menu-buttonn md:hidden ml-2 side-top-icon"
             onClick={toggleDrawer}
           >
             <div className="bar1" />
@@ -661,23 +661,25 @@ const Header = () => {
           </div>
 
           <div
-            style={{ marginLeft: "-7rem" }}
+            style={{ marginLeft: "0rem" }}
             className={`side-menu-buttonn  ${
               !isOpen2 ? "hidden" : "block"
-            } font-bold text-white md:hidden`}
+            } font-bold text-white md:hidden side-top-icon`}
             onClick={toggleDrawer}
           >
             <div className="bar1" />
             <div className="bar2" />
             <div className="bar3" />
           </div>
+
+          <div style ={{width:"75px"}}><img src="https://sixrun.co/assets/sixrun-DFFs84w_.png"/></div>
 
           <div className="">
             <ul className="user-searchh flex gap-2  list-unstyled ">
               <li className="username  text-white my-2">
                 <span
                   className="bg-gray-500 relative  rounded-sm px-2 py-2"
-                  style={{ backgroundColor: "#6c757d", color: "white" }}
+                  style={{ backgroundColor: "rgb(120 120 120 / 57%)", color: "white" }}
                   onClick={() => setShowMenu(!showMenu)}
                 >
                   {userState?.user?.username} <i className="fa fa-caret-down" />
@@ -736,10 +738,10 @@ const Header = () => {
           <CustomLink
             to={"/"}
             className="logo-new navbarbg  -600"
-            style={{ background: "black" }}
+            // style={{ background: "black" }}
           >
             {/* <img className="" src="/9x.png" /> */}
-            <img className="" style={{ width: "500px" }} src="/imgs/logo.png" />
+            <img className="" style={{ width: "500px" }} src="https://admin.sixrun.co/assets/logo-DFFs84w_.png" />
           </CustomLink>
 
           <div className="">
@@ -772,7 +774,7 @@ const Header = () => {
                       className="md:flex gap-2 py-2 md:flex-row flex flex-col items-center"
                       to={"/market-analysis"}
                     >
-                      <TvIcon className="text-warning" />
+                      <TvIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Dashboard
                       </b>
@@ -820,7 +822,7 @@ const Header = () => {
                         setActiveMenu("User");
                       }}
                     >
-                      <GroupIcon className="text-warning" />
+                      <GroupIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium  text-white">
                         {/* {userState?.user?.role  === 'mdl' ? 'Agent Master' : "" } */}
                         {userState?.user?.role === "admin"
@@ -844,7 +846,7 @@ const Header = () => {
 
                     {dropdownOpen ? (
                       <div
-                        style={{ background: "rgb(134 100 226 / 82%)" }}
+                        style={{ background: "#052a51" }}
                         className="dropdown-menuj bg-neutral-700 md:pl-2   absolutek z-50 hiddenj group-hover:block w-full"
                       >
                         {getRoleOptions().map((role) => (
@@ -864,7 +866,7 @@ const Header = () => {
                               className="dropdown-item hover:bg-gray-400"
                             >
                               <b className="text-white mobile-style md:text-lg text-xs  md:flex md:flex-row flex flex-col items-center gap-1">
-                                <ListIcon className="text-black-600" />
+                                <ListIcon className="text-black-600 side-bar-icon" />
                                 {role.label}(
                                 {
                                   userList?.items?.filter(
@@ -896,7 +898,7 @@ const Header = () => {
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                       to="/sports-details"
                     >
-                      <SportsSoccerIcon className="text-warning" />
+                      <SportsSoccerIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sport's Betting
                       </b>
@@ -917,7 +919,7 @@ const Header = () => {
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                       to="/casino-details"
                     >
-                      <SummarizeIcon className="text-warning" />
+                      <SummarizeIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Casino Betting
                       </b>
@@ -938,7 +940,7 @@ const Header = () => {
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                       to="/matka-pl"
                     >
-                      <SummarizeIcon className="text-warning" />
+                      <SummarizeIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Matka Betting
                       </b>
@@ -950,7 +952,7 @@ const Header = () => {
                       onClick={() => setDropdownOpen2(!dropdownOpen2)}
                       className="md:flex md:flex-row flex flex-col gap-2 items-center"
                     >
-                      <SportsSoccerIcon className="text-warning" />
+                      <SportsSoccerIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sports Betting
                       </b>{" "}
@@ -968,7 +970,7 @@ const Header = () => {
                             className="dropdown-item"
                           >
                             <b className="text-white md:text-lg  text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
+                              <ListIcon className="text-warning side-bar-icon" />
                               {"Inplay Games"}
                             </b>
                           </CustomLink>
@@ -981,7 +983,7 @@ const Header = () => {
                             className="dropdown-item"
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
+                              <ListIcon className="text-warning side-bar-icon" />
                               Sport's Betting
                             </b>
                           </CustomLink>
@@ -994,7 +996,7 @@ const Header = () => {
                             className="dropdown-item hidden"
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
+                              <ListIcon className="text-warning side-bar-icon" />
                               Completed Games
                             </b>
                           </CustomLink>
@@ -1034,7 +1036,7 @@ const Header = () => {
 
                   <li className="nav-item hidden dropdown border-b-4 border-black md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
-                      <SummarizeIcon className="text-warning" />
+                      <SummarizeIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sports Detail
                       </b>{" "}
@@ -1090,7 +1092,7 @@ const Header = () => {
                               className="dropdown-item"
                             >
                               <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-warning" />
+                                <TuneIcon className="text-warning side-bar-icon" />
                                 Sports Detail
                               </b>
                             </CustomLink>
@@ -1263,7 +1265,7 @@ const Header = () => {
                       }}
                       className={`md:flex py-2  md:flex-row flex flex-col gap-2 items-center `}
                     >
-                      <ReceiptLongIcon className="text-warning" />
+                      <ReceiptLongIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Ledger
                       </b>{" "}
@@ -1273,7 +1275,7 @@ const Header = () => {
                       <div
                         className="dropdown-menuf bg-neutral-700 md:pl-2"
                         aria-labelledby="navbarDropdownMenuLink"
-                        style={{ background: "rgb(134 100 226 / 82%)" }}
+                        style={{ background: "#052a51" }}
                       >
                         <li className="border-b-4 border-black pb-2">
                           <CustomLink
@@ -1288,7 +1290,7 @@ const Header = () => {
                             }`}
                           >
                             <b className="text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
+                              <ListIcon className="text-warning side-bar-icon" />
                               {"My Ledger"}
                             </b>
                           </CustomLink>
@@ -1307,7 +1309,7 @@ const Header = () => {
                             }`}
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
+                              <ListIcon className="text-warning side-bar-icon" />
                               All{" "}
                               {userState?.user?.role === RoleType.dl
                                 ? "Client"
@@ -1330,7 +1332,7 @@ const Header = () => {
                             }`}
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
+                              <ListIcon className="text-warning side-bar-icon" />
                               Total Profit
                             </b>
                           </CustomLink>
@@ -1349,7 +1351,7 @@ const Header = () => {
                             }`}
                           >
                             <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
+                              <ListIcon className="text-warning side-bar-icon" />
                               {userState?.user?.role === RoleType.dl
                                 ? "Client"
                                 : "Agent"}{" "}
@@ -1372,7 +1374,7 @@ const Header = () => {
                               }`}
                             >
                               <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                <ListIcon className="text-warning" />
+                                <ListIcon className="text-warning side-bar-icon" />
                                 {"कमीशन लेन देन"}
                               </b>
                             </CustomLink>
@@ -1486,7 +1488,7 @@ const Header = () => {
                         }}
                         className="md:flex py-2  md:flex-row flex flex-col gap-1 items-center"
                       >
-                        <SettingsIcon className="text-warning" />
+                        <SettingsIcon className="text-warning side-bar-icon" />
                         <b className="md:text-lg text-xs font-medium text-white">
                           Settings
                         </b>{" "}
@@ -1496,7 +1498,7 @@ const Header = () => {
                         <div
                           className="dropdown-menud bg-none  md:pl-2"
                           aria-labelledby="navbarDropdownMenuLink"
-                          style={{ background: "rgb(134 100 226 / 82%)" }}
+                          style={{ background: "#052a51" }}
                         >
                           {userState?.user?.role === RoleType.admin && (
                             <>
@@ -1525,7 +1527,7 @@ const Header = () => {
                                   }`}
                                 >
                                   <b className="text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                    <TuneIcon className="text-warning" />
+                                    <TuneIcon className="text-warning side-bar-icon" />
                                     Add Match List
                                   </b>
                                 </CustomLink>
@@ -1544,7 +1546,7 @@ const Header = () => {
                                   }`}
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                    <TuneIcon className="text-warning" />
+                                    <TuneIcon className="text-warning side-bar-icon" />
                                     Casino List
                                   </b>
                                 </CustomLink>
@@ -1564,7 +1566,7 @@ const Header = () => {
                                   }`}
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                    <TuneIcon className="text-warning" />
+                                    <TuneIcon className="text-warning side-bar-icon" />
                                     {"Block Markets"}
                                   </b>
                                 </CustomLink>
@@ -1604,7 +1606,7 @@ const Header = () => {
                                   }`}
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                    <TuneIcon className="text-warning" />
+                                    <TuneIcon className="text-warning side-bar-icon"  />
                                     {"Matka Rollback Results"}
                                   </b>
                                 </CustomLink>
@@ -1623,7 +1625,7 @@ const Header = () => {
                                   }`}
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                    <DeleteIcon className="text-warning" />
+                                    <DeleteIcon className="text-warning side-bar-icon" />
                                     Deleted Bets
                                   </b>
                                 </CustomLink>
@@ -1636,7 +1638,7 @@ const Header = () => {
                                   className="dropdown-item"
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                    <ListIcon className="text-warning" />
+                                    <ListIcon className="text-warning side-bar-icon" />
                                     Deleted Bets History
                                   </b>
                                 </CustomLink>
@@ -1655,30 +1657,13 @@ const Header = () => {
                                   }`}
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                    <ListIcon className="text-warning" />
+                                    <ListIcon className="text-warning side-bar-icon" />
                                     Notice
                                   </b>
                                 </CustomLink>
                               </li>
 
-                              <li className="border-b-4 border-black pb-2">
-                                <CustomLink
-                                  // onClick={() => setDropdownOpen4(!dropdownOpen4)}
-                                  onClick={() => {
-                                    toggleDrawer();
-                                    setActiveMenu("MO");
-                                  }}
-                                  to="/manage-odds"
-                                  className={`dropdown-item ${
-                                    activeMenu === "MO" ? "bg-active" : ""
-                                  }`}
-                                >
-                                  <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                    <ListIcon className="text-warning" />
-                                    Manage Odds
-                                  </b>
-                                </CustomLink>
-                              </li>
+                             
 
                               {/* <li>
                               <CustomLink
@@ -1739,7 +1724,7 @@ const Header = () => {
                       className="md:flex gap-2 py-2 md:flex-row flex flex-col items-center"
                       to={"/all-client-report"}
                     >
-                      <LocalOfferIcon className="text-warning " />
+                      <LocalOfferIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         All{" "}
                         {userState?.user?.role === RoleType.dl
@@ -1750,7 +1735,7 @@ const Header = () => {
                     </CustomLink>
                   </li>
 
-                   <li
+                   {/* <li
                     className={`nav-item border-b md:w-60 w-fit ${
                       activeMenu === "Report" ? "bg-active" : ""
                     } `}
@@ -1762,7 +1747,7 @@ const Header = () => {
                       Old Data Link
                       </b>
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </nav>

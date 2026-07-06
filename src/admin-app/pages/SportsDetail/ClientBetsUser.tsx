@@ -174,16 +174,16 @@ const ClientBetsUser = () => {
 
       setmarketData2(filtered);
     });
-  }, [maid , userState , shared]);
+  }, [maid, userState, shared]);
 
   // //console.log(marketData, "fmsjnsdjfksgdfjgksd");
 
   const [ledgerData, setLedgerData] = React.useState([]);
 
-  
+
   // //console.log(userState, "isususus");
 
- 
+
 
   React.useEffect(() => {
     // const userState = useAppSelector<{ user: User }>(selectUserData);
@@ -324,7 +324,7 @@ const ClientBetsUser = () => {
 
   React.useEffect(() => {
     handleDateFilter(false); // no date filter
-  }, [maid , userState , shared]);
+  }, [maid, userState, shared]);
 
   const [selectedUser, setSelectedUser] = React.useState<string | null>(null);
 
@@ -381,7 +381,7 @@ const ClientBetsUser = () => {
 
   return (
     <>
-      <div className="container" style={{ marginBottom: "150px" ,padding:"0px"}}>
+      <div className="container" style={{ marginBottom: "150px", padding: "0px" }}>
         <div className="res-table d-none"></div>
 
         <div className="control-group mt-2 selectize-control single">
@@ -468,14 +468,13 @@ const ClientBetsUser = () => {
                       <tr key={index}>
                         <td className="pt-1 pb-1">{team?.runnerName}</td>
                         <td
-                          className={`pt-1 pb-1 ${
-                            ((team?.totalStack || 0) +
+                          className={`pt-1 pb-1 ${((team?.totalStack || 0) +
                               (team?.profitLoss || 0)) *
                               (shared * 0.01) >
-                            0
+                              0
                               ? "text-red-500"
                               : "text-green-500"
-                          }`}
+                            }`}
                         >
                           {/* <p>{team?.profitLoss}</p> */}
                           {(
@@ -503,12 +502,11 @@ const ClientBetsUser = () => {
                   setShowmatch(!showmatch);
                   setPlus(false);
                 }}
-                className="card-header p-0 text-center mb-2"
+                className="card-header-ledger text-left mb-2"
               >
-                Display Match Bet
-              </button>
+                <span>Display Match Bet</span>              </button>
             ) : (
-              <div className="card-header p-0 text-center">MATCH</div>
+              <div className="card-header-ledger p-0 text-center">MATCH</div>
             )}
             {isMobile ? (
               <button
@@ -517,9 +515,9 @@ const ClientBetsUser = () => {
                   setShowmatch(false);
                   setPlus(false);
                 }}
-                className="card-header p-0 text-center w-100 mb-2"
+                className="card-header-ledger text-left w-100 mb-2"
               >
-                Display Session Bet
+                <span> Display Session Bet</span>
               </button>
             ) : (
               ""
@@ -532,16 +530,16 @@ const ClientBetsUser = () => {
                   setShowmatch(false);
                   setPlus(!plus);
                 }}
-                className="card-header p-0 text-center w-100 mb-2"
+                className="card-header-ledger  text-left w-100 mb-2"
               >
-                Match & Session Plus Minus
+                <span>Match & Session Plus Minus </span>
               </button>
             ) : (
               ""
             )}
             {showmatch ? (
               <div
-                style={{ height: "100vh", backgroundColor: "#F4EED0" }}
+                style={{ height: "100vh" }}
                 className="card-body p-0 overflow-x-scroll overflow-y-scroll"
               >
                 <table className="table table-striped table-bordered table-hover">
@@ -564,8 +562,8 @@ const ClientBetsUser = () => {
                       <tr key={index}>
                         <td
                           style={{
-                            fontSize: "10px",
-                            minWidth: "180px",
+                            fontSize: "9px",
+                            minWidth: "100px",
                             whiteSpace: "normal",
                             wordBreak: "break-word",
                           }}
@@ -574,17 +572,16 @@ const ClientBetsUser = () => {
                           {bet?.parentData
                             ?.slice(
                               bet?.parentData.indexOf(userState.user.username) +
-                                1
+                              1
                             )
                             .join("/")}
                           /{bet?.userName}/({bet?.userCode})
                         </td>
                         <td
-                          className={`pt-2 pb-1 ${
-                            bet?.profitLoss < 0
+                          className={`pt-2 pb-1 ${bet?.profitLoss < 0
                               ? "text-black-500"
                               : "text-black-500"
-                          }`}
+                            }`}
                         >
                           {bet?.stack}
                         </td>
@@ -594,36 +591,36 @@ const ClientBetsUser = () => {
                         <td className="pt-2 pb-1">
                           {bet?.isBack ? (
                             <button
-                              className="btn-yes btn btn-sm p-1 ng-scope gap-1 d-flex"
+                              className="btn-yes btn btn-sm p-1 ng-scope gap-1 d-flex d-flex-new"
                               style={{ fontSize: "xx-small" }}
                             >
                               <span
                                 className="badge badge-light"
-                                style={{ fontSize: "xx-small" }}
+                                style={{ fontSize: "xx-small", whiteSpace: "normal", wordBreak: "break-word" }}
                               >
                                 L
                               </span>
                               <span
                                 className="badge badge-light"
-                                style={{ fontSize: "xx-small" }}
+                                style={{ fontSize: "xx-small", whiteSpace: "normal", wordBreak: "break-word" }}
                               >
                                 {bet.selectionName}
                               </span>
                             </button>
                           ) : (
                             <button
-                              className="btn-not btn btn-sm p-1 gap-1 d-flex"
-                              style={{ fontSize: "xx-small" }}
+                              className="btn-not btn btn-sm p-1 gap-1 d-flex d-flex-new"
+                              style={{ fontSize: "xx-small", width: '53px' }}
                             >
                               <span
                                 className="badge badge-light"
-                                style={{ fontSize: "xx-small" }}
+                                style={{ fontSize: "xx-small", whiteSpace: "normal", wordBreak: "break-word" }}
                               >
                                 K
                               </span>
                               <span
                                 className="badge badge-light"
-                                style={{ fontSize: "xx-small" }}
+                                style={{ fontSize: "xx-small", whiteSpace: "normal", wordBreak: "break-word" }}
                               >
                                 {bet.selectionName}
                               </span>{" "}
@@ -655,9 +652,13 @@ const ClientBetsUser = () => {
                                                     {(bet?.profitLoss)?.toFixed()}
                                                 </td> */}
                         <td
-                          className="pt-2 pb-1 text-nowrap"
-                          style={{ fontSize: "xx-small" }}
-                        >
+                          className="pt-2 pb-1"
+                          style={{
+                            fontSize: "9px",
+                            minWidth: "40px",
+                            whiteSpace: "normal",
+                            wordBreak: "break-word",
+                          }}                        >
                           {/* {moment(bet?.betClickTime).format(betDateFormat)} */}
                           {moment
                             .utc(bet?.betClickTime)
@@ -742,7 +743,7 @@ const ClientBetsUser = () => {
                                 color: "white",
                               }}
                             >
-                             {/* {(totalPL * (shared * 0.01)).toFixed()} */}
+                              {/* {(totalPL * (shared * 0.01)).toFixed()} */}
 
                             </span>
                             <span className="badge badge-light float-right ng-binding ng-scope">
@@ -765,9 +766,9 @@ const ClientBetsUser = () => {
                                       {/* <th className="pt-0 pb-0">Rate</th> */}
 
                                       <th className="pt-0 pb-0">-</th>
-                                     
-                                        <th className="pt-0 pb-0">Amount</th>
-                                      
+
+                                      <th className="pt-0 pb-0">Amount</th>
+
                                       {/* {bet?.status == "completed" && (
                                         <th className="pt-0 pb-0">PnL</th>
                                       )} */}
@@ -861,19 +862,18 @@ const ClientBetsUser = () => {
                                             )}
                                           </td>
 
-                                        
-                                         
-                                            <td
-                                              className={`pt-2 pb-1 ${
-                                                bet?.profitLoss < 0
-                                                  ? "text-black-500"
-                                                  : "text-black-500"
+
+
+                                          <td
+                                            className={`pt-2 pb-1 ${bet?.profitLoss < 0
+                                                ? "text-black-500"
+                                                : "text-black-500"
                                               }`}
-                                            >
-                                              {bet?.stack}
-                                            </td>
-                                         
-{/* 
+                                          >
+                                            {bet?.stack}
+                                          </td>
+
+                                          {/* 
                                           {bet?.status == "completed" && (
                                             <td
                                               className={`pt-2 pb-1 ${
@@ -942,7 +942,7 @@ const ClientBetsUser = () => {
                             </div>
                             <div
                               className="book-badges d-flex flex-wrap gap-2 overflow-auto mt-2 p-2 border rounded"
-                              // style={{ maxHeight: "70px" }}
+                            // style={{ maxHeight: "70px" }}
                             >
                               {Object.keys(book).length > 0 &&
                                 Object.keys(book).map((itemKey) => {
@@ -952,26 +952,24 @@ const ClientBetsUser = () => {
                                   return (
                                     <div
                                       key={itemKey}
-                                      className={`book-badge d-flex align-items-center justify-content-between`}
+                                      className="book-badge d-flex align-items-center justify-content-between"
                                       style={{
-                                        minWidth: "60px",
-                                        padding: "4px 8px",
-                                        borderRadius: "6px", // #dc3545"
+                                        minWidth: "42px",
+                                        padding: "4px 3px",
+                                        borderRadius: "6px",
                                         fontSize: "12px",
-                                        // fontWeight: "500",
-                                        color: isLay
-                                          ? "#141313ff"
-                                          : "#090909ff",
-                                        backgroundColor: isLay
-                                          ? "#28a745"
-                                          : "red",
+                                        fontWeight: "500",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        color: isLay ? "#141313ff" : "#090909ff",
+                                        backgroundColor: isLay ? "#28a745" : "#ff7390ab",
                                       }}
                                     >
                                       <span className="badge-label">
                                         {itemKey}
                                       </span>
                                       <span className={`badge-value ms-1 `}>
-                                      {(-value).toFixed()}
+                                        {(-value).toFixed()}
 
                                       </span>
                                     </div>

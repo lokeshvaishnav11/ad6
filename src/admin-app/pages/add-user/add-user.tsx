@@ -622,7 +622,7 @@ const AddUser = () => {
         <div className="col-md-12 main-container">
           <div>
             <div className="add-account">
-              <div className="text-right mb-2 d-flex items-center justify-between bg-black p-2 rounded ">
+              <div className="text-right mb-2 d-flex items-center justify-between  p-2 rounded " style={{background:"rgb(5, 42, 81)"}}>
                 <p className="text-xl text-white">
                   {thetype == "sadmin"
                     ? "Sub Admin"

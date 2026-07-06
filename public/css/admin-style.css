@@ -27,7 +27,7 @@
   --blue-color: #0000ff;
   --them1color: #ffc01a;
   --theme2color: #000;
-  --theme2-bg70: #6c757d !important;
+  --theme2-bg70: rgb(5, 42, 81);
 }
 
 html,
@@ -68,7 +68,6 @@ body {
   margin-top: 48px;
   margin-bottom: 2px;
   /* background-color: #424242; */
-  background-color: rgb(0, 0, 0);
 
 }
 
@@ -803,17 +802,19 @@ input+.slider span:last-child {
   /* z-index: 2; */
   /* background: #ffffff; */
   /* width: 197px; */
-  background: #ffffff;
+  /* background: #ffffff; */
   width: 100%;
-  height: 46px;
+  height: 50px;
 
 }
+
+
 
 @media screen and (max-width: 767px) {
   .logo-new {
     position: absolute;
     top: 0px;
-    background: #ffffff;
+    /* background: #ffffff; */
     /* width: 71px; */
     /* height: 35px; */
     /* old */
@@ -1116,10 +1117,10 @@ input+.slider span:last-child {
 .bar1,
 .bar2,
 .bar3 {
-  width: 20px;
-  height: 3px;
-  background-color: var(--primary-color);
-  margin: 4px 0;
+  width: 14px;
+  height: 2px;
+  background-color: #a4f827;
+  margin: 3px 0;
   transition: 0.4s;
 }
 
@@ -1515,11 +1516,11 @@ ul.mtree.transit li.mtree-open>a::after {
 }
 
 .game-heading {
-  background-color: var(--theme2-bg);
-  color: var(--secondary-color);
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
+  background-color: #6c757d;
+  color: #a4f827;
+  padding: 4px 9px;
+  /* font-size: 16px; */
+  /* font-weight: bold; */
 }
 
 .main-container {
@@ -6172,11 +6173,11 @@ img.rrotate {
   padding: 10px;
 }
 
-.game-heading {
+/* .game-heading {
   background-color: var(--theme2-bg);
   color: var(--secondary-color);
   padding: 10px;
-}
+} */
 
 .game-heading .card-header-title {
   font-size: 18px;
@@ -6264,7 +6265,7 @@ img.rrotate {
 }
 
 .table-row {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(59, 59, 59);
 }
 
 .fancy-market .table-row {
@@ -6329,13 +6330,15 @@ img.rrotate {
 }
 
 .table-row>div .odd~span {
-  font-size: 10px;
+ font-size: 13px;
+    font-weight: bold;
+    color: rgb(59, 59, 59);
 }
 
 .table-row>div .odd {
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 1px;
+  font-size: 20px;
+  /* font-weight: bold; */
+  /* margin-bottom: 10px; */
 }
 
 .fancy-market .suspended:after {
@@ -6482,10 +6485,10 @@ img.rrotate {
 
 label {
   margin: 0px;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 16px;
   margin-bottom: 10px;
-  letter-spacing: 1.4;
+  letter-spacing: 1;
 }
 
 .MuiTreeView-root {
@@ -7400,6 +7403,9 @@ button.btn-close::after {
   display: -ms-flexbox !important;
   display: flex !important;
 }
+.d-flex-new{
+  flex-direction: column;
+}
 
 .videoCards img {
   width: 35px;
@@ -8218,7 +8224,9 @@ button.btn-close::after {
   white-space: nowrap;
   overflow: hidden;
   box-sizing: border-box;
-  padding: 10px;
+  /* padding: 10px; */
+  border-radius:4px;
+  margin-top:5px
 }
 
 .marqueeN p {

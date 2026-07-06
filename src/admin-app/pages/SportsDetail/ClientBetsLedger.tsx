@@ -513,10 +513,10 @@ const ClientBetsLedger = () => {
                 }}
                 className="card-header p-0 text-center mb-2"
               >
-                Display Match Bet
+                <span>Display Match Bet</span>
               </button>
             ) : (
-              <div className="card-header p-0 text-center">MATCH</div>
+              <div className="card-header-ledger  text-center">MATCH</div>
             )}
             {isMobile ? (
               <button
@@ -525,9 +525,9 @@ const ClientBetsLedger = () => {
                   setShowmatch(false);
                   setPlus(false);
                 }}
-                className="card-header p-0 text-center w-100 mb-2"
+                className="card-header-ledger  text-center w-100 mb-2"
               >
-                Display Session Bet
+               <span> Display Session Bet </span>
               </button>
             ) : (
               ""
@@ -540,9 +540,9 @@ const ClientBetsLedger = () => {
                   setShowmatch(false);
                   setPlus(!plus);
                 }}
-                className="card-header p-0 text-center w-100 mb-2"
+                className="card-header-ledger text-center w-100 mb-2"
               >
-                Match & Session Plus Minus
+               <span> Match & Session Plus Minus </span>
               </button>
             ) : (
               ""
@@ -574,7 +574,7 @@ const ClientBetsLedger = () => {
                         <td
                           style={{
                             fontSize: "10px",
-                            minWidth: "180px",
+                            minWidth: "80px",
                             whiteSpace: "normal",
                             wordBreak: "break-word",
                           }}

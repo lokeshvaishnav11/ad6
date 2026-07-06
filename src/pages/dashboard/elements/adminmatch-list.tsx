@@ -40,13 +40,13 @@ const MatchList2: React.FC<MatchListProps> = ({
                   >
                     <div className="card w-100" style={{ cursor: "pointer" }}>
                       <div
-                        className="card-headerf font-weight-bolder text-center bg-wcarning p-1 h6 small"
-                        style={{ backgroundColor: "black", color: "white" }}
+                        className="card-headerf font-weight-bolder text-center bg-wcarning p-1 h6"
+                        style={{ backgroundColor: "#052a51", color: "white" }}
                       >
                         {match?.name}
                       </div>
 
-                      <div className="card-body pt-1 pb-0">
+                      <div className="card-body pt-1 pb-3">
                         <div className="row p-0">
                           <div
                             style={{ marginLeft: "20px" }}
@@ -54,7 +54,7 @@ const MatchList2: React.FC<MatchListProps> = ({
                           >
                             {/* ✅ Fixed-height IN PLAY section */}
                             <div
-                              className="h6 small pl-1 mb-1 pt-1 d-flex align-items-center"
+                              className="h6  pl-1 mb-1 pt-1 d-flex align-items-center"
                               style={{ minHeight: "22px" }} // keeps card symmetrical
                             >
                               {moment().isSame(

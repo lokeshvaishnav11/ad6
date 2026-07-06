@@ -1,9 +1,17 @@
 
-.card-header{
-	background: black;
+.card-header-ledger{
+	background:#052a51;
 	color: #fff !important;
     font-weight: 700;
+    padding-top: 4px;
+    padding-bottom: 4px;
+        padding-left: 11px;
+
 } 
+
+.card-header span{
+    padding:"6px"
+}
 .matka-profit{
     color: green;
     border-radius: 0;
@@ -60,7 +68,7 @@ table ul .dropdown-toggle::after {
 }
 
 .navbar-bet99 {
-    background: rgb(0, 0, 0) !important;
+    background: #052a51 !important;
     color: #fff !important
 }
 
@@ -119,7 +127,7 @@ table ul .dropdown-toggle::after {
 .btn-NOT,
 .btn-k,
 .btn-K {
-    background: #ec2240 !important
+    background: #fa9fad !important
 }
 
 .bg-yes,

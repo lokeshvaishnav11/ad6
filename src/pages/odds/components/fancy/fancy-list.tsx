@@ -107,7 +107,7 @@ export const FancyList = React.memo(
                       className="float-left country-name box-6"
                       style={{ borderBottom: "0px none" }}
                     >
-                      <p className="m-b-0">
+                      <p className="m-b-0 text-center ">
                         <span
                           style={{
                             display: isMobile ? "flex" : "",
@@ -115,6 +115,7 @@ export const FancyList = React.memo(
                             flexDirection: "column",
                             // alignItems: "center",
                             color: "white",
+                            fontWeight:"bold"
                           }}
                         >
                           {fancy.fancyName}
@@ -183,7 +184,7 @@ export const FancyList = React.memo(
                       <span className="odd d-block">
                         {updatedFancy.LayPrice1
                           ? updatedFancy.LayPrice1
-                          : "SUSPEND"}
+                          : "0"}
                       </span>{" "}
                       <span>{updatedFancy.LaySize1}</span>
                     </div>
@@ -196,7 +197,7 @@ export const FancyList = React.memo(
                       <span className="odd d-block">
                         {updatedFancy.BackPrice1
                           ? updatedFancy.BackPrice1
-                          : "SUSPEND"}
+                          : "0"}
                       </span>{" "}
                       <span>{updatedFancy.BackSize1}</span>
                     </div>

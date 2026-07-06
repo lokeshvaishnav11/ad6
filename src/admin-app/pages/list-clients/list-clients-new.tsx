@@ -1543,7 +1543,7 @@ const ListClients = () => {
                                 }}
                               >
                                 <img
-                                  src="https://admin.7wickets.co/assets/images/whatsapp.png"
+                                  src="https://img.magnific.com/premium-vector/whatsapp-vector-logo-icon-logotype-vector-social-media_901408-406.jpg?semt=ais_hybrid&w=740&q=80"
                                   alt="WhatsApp"
                                   style={{
                                     width: "20px",

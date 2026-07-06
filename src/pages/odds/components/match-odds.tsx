@@ -176,40 +176,11 @@ class MatchOdds extends React.PureComponent<
                 className=""
                 key={market._id}
               >
-                <div className="market-title">
-                  {market.marketName}
-                  <a
-                    href="#Bookmaker-market"
-                    onClick={(e: MouseEvent<HTMLAnchorElement>) => {
-                      e.preventDefault();
-                      this.props.setRules({
-                        open: true,
-                        type:
-                          market.oddsType === OddsType.BM
-                            ? "Bookmaker"
-                            : market.oddsType,
-                      });
-                    }}
-                    className="m-r-5 game-rules-icon"
-                  >
-                    <span>
-                      <i className="fa fa-info-circle float-right" />
-                    </span>
-                  </a>
-                  <span className="float-right m-r-10">
-                    {/* Maximum Bet <span>{this.offplaylimit(market)}</span> */}
-                    Maximum Bet{" "}
-                    <span>
-                      {this?.props?.userState?.user?.userSetting
-                        ? this?.props?.userState?.user?.userSetting[1]?.maxBet
-                        : `${this.offplaylimit(market)}`}
-                    </span>
-                  </span>
-                </div>
+              
                 <div className="table-header">
                   <div
-                    style={{ fontSize: "18px", backgroundColor: "#8fd9a8" }}
-                    className={`float-left country-name ${classforheadingfirst} min-max`}
+                    style={{ fontSize: "18px", backgroundColor: "#052a51" ,color:"white" }}
+                    className={`float-left country-name ${classforheadingfirst} min-max text-center`}
                   >
                     <b />
                     Team
@@ -240,7 +211,7 @@ class MatchOdds extends React.PureComponent<
                     }}
                     className={`back ${classforheading} float-left text-center`}
                   >
-                    <b>Lagai</b>
+                    <b>Back</b>
                   </div>
                   <div
                     style={{
@@ -249,7 +220,7 @@ class MatchOdds extends React.PureComponent<
                     }}
                     className={`lay ${classforheading} float-left text-center`}
                   >
-                    <b>Khai</b>
+                    <b>Lay</b>
                   </div>
                   {/* {  (
                     <>
@@ -280,11 +251,11 @@ class MatchOdds extends React.PureComponent<
                             }`}
                           >
                             <div
-                              style={{ backgroundColor: "black" }}
-                              className={`  country-name ${classforheadingfirst}`}
+                              style={{ backgroundColor: "#3b3b3b" }}
+                              className={`  country-name ${classforheadingfirst} text-Right`}
                             >
-                              <span className="team-name ">
-                                <b style={{ color: "white" }}>
+                              <span className="team-name mr-3 fs-3 ">
+                                <b style={{ color: "white", fontSize:"17px" }}>
                                   {runner.runnerName}
                                 </b>
                               </span>
