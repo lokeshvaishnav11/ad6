@@ -54,6 +54,9 @@ import WalletIcon from "@mui/icons-material/Wallet";
 import { ClassNames } from "@emotion/react";
 import EngageModal from "./modals/EngageModel";
 import accountService from "../../../services/account.service";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoins, faUsers, faUnlock } from "@fortawesome/free-solid-svg-icons";
+import { left } from "@popperjs/core";
 
 const ListClients = () => {
   const ref: any = React.createRef();
@@ -205,11 +208,11 @@ const ListClients = () => {
       type: newtype || "",
       page: 1
     };
-  
+
     setSearchObj(obj);
     setPage(1);
     getList(obj);
-  }, [username, searchParams.get("search"), callbacklist,newtype]);
+  }, [username, searchParams.get("search"), callbacklist, newtype]);
 
   React.useEffect(() => {
     clientlistdata(users);
@@ -217,15 +220,15 @@ const ListClients = () => {
 
   const handlePageClick = (event: any) => {
     const selectedPage = event.selected + 1;
-  
+
     setPage(selectedPage);
-  
+
     const updatedObj = {
       ...searchObj,
       type: newtype || "", // 🔥 ensure type always goes
       page: selectedPage
     };
-  
+
     getList(updatedObj);
   };
 
@@ -263,9 +266,9 @@ const ListClients = () => {
     status?: string;
     page?: number;
   }) => {
-  
+
     setUserList([] as any);
-  
+
     userService.getUserList(obj).then((res: AxiosResponse<any>) => {
       setSearchObj(obj); // store latest filters including type
       setUserList(res.data.data);
@@ -498,27 +501,27 @@ const ListClients = () => {
   );
 
   const mainBalance = (row: any) => {
-  const clientpl = row.balance?.profitLoss || 0;
-  const creditRef = row?.balance?.balance || 0;
+    const clientpl = row.balance?.profitLoss || 0;
+    const creditRef = row?.balance?.balance || 0;
 
-  const value = parseFloat(creditRef);
-  return Math.max(0, value);
-};
+    const value = parseFloat(creditRef);
+    return Math.max(0, value);
+  };
 
   const mainBalanceUser = (row: any) => {
-  const clientpl = row.balance?.profitLoss || 0;
-  const creditRef: any = row?.balance?.balance - row?.balance?.exposer;
+    const clientpl = row.balance?.profitLoss || 0;
+    const creditRef: any = row?.balance?.balance - row?.balance?.exposer;
 
-  const value = parseFloat(creditRef);
-  return Math.max(0, value);
-};
+    const value = parseFloat(creditRef);
+    return Math.max(0, value);
+  };
 
   const mainBalancechild = (row: any) => {
     const creditRef = row?.creditRefrences || 0;
     // const clientpl = row.balance?.profitLoss || 0;
     const creditb = row?.balance?.balance || 0;
     const profitloss = row?.balance?.profitLoss || 0;
-   const value = parseFloat(row.childBalance);
+    const value = parseFloat(row.childBalance);
     return Math.max(0, value);
     // return (parseFloat(creditRef) + parseFloat(profitloss) - +parseFloat(creditb))?.toFixed(2);
     // return parseFloat(row.childBalance);
@@ -919,19 +922,19 @@ const ListClients = () => {
                     </div> */}
                   </div>
                   <div className="float-right   col-md-4 grid gap-2 ">
-                    <p className="text-right d-flex items-center justify-between p-2 rounded " style={{background:"rgb(5, 42, 81)"}}>
+                    <p className="text-right d-flex items-center justify-between p-2 rounded " style={{ background: "rgb(5, 42, 81)" }}>
                       <p className="text-xl text-white">
                         {newtype == "sadmin"
                           ? "Sub Admin"
                           : newtype == "suadmin"
-                          ? "Admin"
-                          : newtype == "smdl"
-                          ? "Master Agent"
-                          : newtype == "mdl"
-                          ? "Super Agent Master"
-                          : newtype == "dl"
-                          ? "Agent Master"
-                          : "Client"}
+                            ? "Admin"
+                            : newtype == "smdl"
+                              ? "Master Agent"
+                              : newtype == "mdl"
+                                ? "Super Agent Master"
+                                : newtype == "dl"
+                                  ? "Agent Master"
+                                  : "Client"}
                       </p>
 
                       {username ? (
@@ -1053,8 +1056,10 @@ const ListClients = () => {
                         Commission{" "}
                       </th>
                     </tr>
-                    <tr style={{    background:" rgb(5, 42, 81)",
-    color: "white"}}>
+                    <tr style={{
+                      background: " rgb(5, 42, 81)",
+                      color: "white"
+                    }}>
                       {/* <th>
                         <input
                           type={'checkbox'}
@@ -1063,7 +1068,7 @@ const ListClients = () => {
                         />
                       </th> */}
 
-                      <th className="noExport text-center">U St</th>
+                      <th className="noExport text-center"> </th>
                       {/* <th className="noExport">B St</th> */}
                       {/* <th></th> */}
                       <th></th>
@@ -1087,9 +1092,9 @@ const ListClients = () => {
                       {/* <th>Available Balance</th> */}
 
                       {/* <th>Engaged</th> */}
-                      <th className="text-center">Match %</th>
-                      <th className="text-center">Session %</th>
-                      <th className="text-center">Matka %</th>
+                      <th className="text-center">Mat</th>
+                      <th className="text-center">Sess</th>
+                      <th className="text-center">Matka</th>
 
                       {/* <th>Account Type</th> */}
                       {/* <th className="noExport">Actions</th> */}
@@ -1204,23 +1209,89 @@ const ListClients = () => {
                                   style={{ cursor: "pointer" }}
                                 >
                                   {user?.isLogin ? (
-                                    <LockOpenIcon
+                                    <span
                                       style={{
-                                        backgroundColor: "#28a745",
-                                        color: "white",
-                                        borderRadius: "2px",
-                                        padding: "2px",
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        gap: "5px",
                                       }}
-                                    />
+                                    >
+                                      <FontAwesomeIcon
+                                        icon={faUnlock}
+                                        style={{
+                                          backgroundColor: "#28a745",
+                                          color: "#fff",
+                                          borderRadius: "2px",
+                                          padding: "8px",
+                                          fontSize: "14px",
+                                          width: "16px",
+                                          height: "16px",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                        }}
+                                      />
+
+                                      <span
+                                        style={{
+                                          backgroundColor: "#ffc107",
+                                          color: "#000",
+                                          borderRadius: "2px",
+                                          padding: "8px",
+                                          fontSize: "14px",
+                                          width: "27px",
+                                          height: "33px",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          fontWeight: "bold",
+                                        }}
+                                      >
+                                        +
+                                      </span>
+                                    </span>
                                   ) : (
-                                    <LockIcon
+                                     <span
                                       style={{
-                                        backgroundColor: "red",
-                                        color: "white",
-                                        borderRadius: "2px",
-                                        padding: "2px",
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        gap: "5px",
                                       }}
-                                    />
+                                    >
+                                      <FontAwesomeIcon
+                                        icon={faUnlock}
+                                        style={{
+                                          backgroundColor: "red",
+                                          color: "#fff",
+                                          borderRadius: "2px",
+                                          padding: "8px",
+                                          fontSize: "14px",
+                                          width: "16px",
+                                          height: "16px",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                        }}
+                                      />
+
+                                      <span
+                                        style={{
+                                          backgroundColor: "#ffc107",
+                                          color: "#000",
+                                          borderRadius: "2px",
+                                          padding: "8px",
+                                          fontSize: "14px",
+                                          width: "27px",
+                                          height: "33px",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          fontWeight: "bold",
+                                        }}
+                                      >
+                                        +
+                                      </span>
+                                    </span>
                                   )}
                                 </span>
                               )}
@@ -1319,13 +1390,12 @@ const ListClients = () => {
                                   user._id && handleToggle(user._id)
                                 }
                               >
-                               <ArrowDropDownIcon className="size-2" style={{fontSize:"44px"}} />
+                                <ArrowDropDownIcon className="size-2" style={{ fontSize: "44px" }} />
                               </button>
                               <div
-                                className={`actions-td ${
-                                  expandedUserId === user._id ? "open" : ""
-                                }`}
-                                // ref={modalRef}
+                                className={`actions-td ${expandedUserId === user._id ? "open" : ""
+                                  }`}
+                              // ref={modalRef}
                               >
                                 <p className="bg-gray-800 hidden text-white p-2">
                                   Action for the user - {user.username}
@@ -1339,8 +1409,8 @@ const ListClients = () => {
                                   <CloseButton className="text-white" />
                                 </button>
                                 <div
-                                  className="actions-container  p-4"
-                                  style={{ backgroundColor: "#F4EED0" }}
+                                  className="actions-container"
+                                  style={{  }}
                                 >
                                   <a
                                     className="hover:text-white  border-b pb-2"
@@ -1364,7 +1434,7 @@ const ListClients = () => {
                                   </a>
 
                                   {/* {isAdmin(user) && */}
-                                  {userState?.user?.role == RoleType.admin && (
+                                  {/* {userState?.user?.role == RoleType.admin && (
                                     <a
                                       className="border-b pb-2"
                                       style={{ color: "#28a745" }}
@@ -1376,50 +1446,50 @@ const ListClients = () => {
                                     >
                                       <BorderColorIcon /> Exposer Limit
                                     </a>
-                                  )}
-                                  
+                                  )} */}
 
-                                  <a
+
+                                  {/* <a
                                     className="border-b"
                                     style={{ color: "#28a745" }}
                                     onClick={() => handleOpenMatkaLimit(user)}
                                   >
                                     <BorderColorIcon /> Matka Limit
-                                  
-                                  </a>
-                                  
-                                  {openMatkaUserId === user._id && (
-                                      <div
-                                        className="input-group input-group-sm "
-                                        style={{ maxWidth: "250px" }}
-                                      >
-                                        <input
-                                          type="number"
-                                          className="form-control text-end border-success"
-                                          value={matkaAmount[user._id] ?? ""}
-                                          onChange={(e) =>
-                                            handleAmountChange(
-                                              user._id,
-                                              Number(e.target.value)
-                                              // user?.parent?.matkaLimit || maxParentMatkalimit
-                                            )
-                                          }
-                                        />
 
-                                        <button
-                                          onClick={() =>
-                                            updatematkalimit(user._id)
-                                          }
-                                          className="btn btn-success"
-                                          type="button"
-                                        >
-                                          Update
-                                        </button>
-                                      </div>
-                                    )}
+                                  </a> */}
+
+                                  {/* {openMatkaUserId === user._id && (
+                                    <div
+                                      className="input-group input-group-sm "
+                                      style={{ maxWidth: "250px" }}
+                                    >
+                                      <input
+                                        type="number"
+                                        className="form-control text-end border-success"
+                                        value={matkaAmount[user._id] ?? ""}
+                                        onChange={(e) =>
+                                          handleAmountChange(
+                                            user._id,
+                                            Number(e.target.value)
+                                            // user?.parent?.matkaLimit || maxParentMatkalimit
+                                          )
+                                        }
+                                      />
+
+                                      <button
+                                        onClick={() =>
+                                          updatematkalimit(user._id)
+                                        }
+                                        className="btn btn-success"
+                                        type="button"
+                                      >
+                                        Update
+                                      </button>
+                                    </div>
+                                  )} */}
 
                                   {/* isAdmin(user) && */}
-                                  {userState?.user?.role == RoleType.admin && (
+                                  {/* {userState?.user?.role == RoleType.admin && (
                                     <a
                                       className="border-b  pb-2"
                                       style={{ color: "#28a745" }}
@@ -1431,7 +1501,7 @@ const ListClients = () => {
                                     >
                                       <BorderColorIcon /> Number Limit Withdrawl
                                     </a>
-                                  )}
+                                  )} */}
                                   {/* {isAdmin(user) &&
                                   user.role !== RoleType.admin && ( */}
                                   <a
@@ -1441,7 +1511,7 @@ const ListClients = () => {
                                       getUserDetail(user);
                                     }}
                                   >
-                                    <BorderColorIcon /> Change Password
+                                    <BorderColorIcon /> Reset Password
                                   </a>
                                   {/* )} */}
                                   {/* {isAdmin(user) &&
@@ -1465,11 +1535,10 @@ const ListClients = () => {
                                         getUserDetail(user);
                                       }}
                                       style={{ color: "red" }}
-                                      className={`${
-                                        user?.role !== RoleType.admin
+                                      className={`${user?.role !== RoleType.admin
                                           ? "d-block"
                                           : "d-none"
-                                      }`}
+                                        } border-b`}
                                     >
                                       <PersonRemoveIcon /> Deactivate{" "}
                                       {`(${user.username})`}
@@ -1477,7 +1546,7 @@ const ListClients = () => {
                                   )}
 
                                   {/* )}  */}
-                                  {userState?.user?.role == RoleType.admin && (
+                                  {/* {userState?.user?.role == RoleType.admin && (
                                     <a
                                       className="border-b pb-2"
                                       // style={{ display: "none" }}
@@ -1488,7 +1557,7 @@ const ListClients = () => {
                                     >
                                       <BorderColorIcon /> Min Max Detail
                                     </a>
-                                  )}
+                                  )} */}
 
                                   <CustomLink
                                     to={`/accountstatement/${user?._id}`}
@@ -1499,7 +1568,7 @@ const ListClients = () => {
                                       getUserDetail(user);
                                     }}
                                   >
-                                    <BorderColorIcon /> Account Statement
+                                    <VisibilityIcon /> Account Statement
                                   </CustomLink>
 
                                   <CustomLink
@@ -1511,7 +1580,7 @@ const ListClients = () => {
                                       getUserDetail(user);
                                     }}
                                   >
-                                    <BorderColorIcon /> Limit Update Details
+                                     <VisibilityIcon /> Limit Update Details
                                   </CustomLink>
 
                                   <CustomLink
@@ -1523,18 +1592,15 @@ const ListClients = () => {
                                       getUserDetail(user);
                                     }}
                                   >
-                                    <BorderColorIcon /> Account Operation
+                                   <VisibilityIcon /> Account Operation
                                   </CustomLink>
 
                                   {lockshow ? (
                                     <div
-                                      style={{ width: "100%", height: "100%" }}
+                                      style={{ width: "100vw", height: "100vh" }}
                                       className="absolute top-0 left-0 p-1   max-w-mkd bg-white border rounded-md bg-opacity- f z-50"
                                     >
-                                      {/* <div 
-    className="bg-gray-300 text-black rounded-t-lg  p-6
-           transform translate-y-full animate-slide-up"
-  > */}
+    
 
                                       <div className="col-12 mb-2 col-md-12 text-center">
                                         <table className="table table-striped  table-bordered  lenden len">
@@ -1558,11 +1624,10 @@ const ListClients = () => {
                                                       "bet"
                                                     )
                                                   }
-                                                  className={`btn ${
-                                                    user?.betLock
+                                                  className={`btn ${user?.betLock
                                                       ? "btn-primary"
                                                       : "btn-danger"
-                                                  }`}
+                                                    }`}
                                                 >
                                                   {user?.betLock
                                                     ? "Lock"
@@ -1583,11 +1648,10 @@ const ListClients = () => {
                                                       "bet2"
                                                     )
                                                   }
-                                                  className={`btn ${
-                                                    user?.betLock2
+                                                  className={`btn ${user?.betLock2
                                                       ? "btn-primary"
                                                       : "btn-danger"
-                                                  }`}
+                                                    }`}
                                                 >
                                                   {user?.betLock2
                                                     ? "Lock"
@@ -1608,11 +1672,10 @@ const ListClients = () => {
                                                       "bet3"
                                                     )
                                                   }
-                                                  className={`btn ${
-                                                    user?.betLock3
+                                                  className={`btn ${user?.betLock3
                                                       ? "btn-primary"
                                                       : "btn-danger"
-                                                  }`}
+                                                    }`}
                                                 >
                                                   {user?.betLock3
                                                     ? "Lock"
@@ -1665,21 +1728,20 @@ const ListClients = () => {
                                 <CustomLink
                                   className="text-blue"
                                   // to={`/list-clients/${user.username}`}
-                                  to={`/list-clients/${user.username}/${
-                                    user.role === "admin"
+                                  to={`/list-clients/${user.username}/${user.role === "admin"
                                       ? "sadmin"
                                       : user.role === "sadmin"
-                                      ? "suadmin"
-                                      : user.role === "suadmin"
-                                      ? "smdl"
-                                      : user.role === "smdl"
-                                      ? "mdl"
-                                      : user.role === "mdl"
-                                      ? "dl"
-                                      : user.role === "dl"
-                                      ? "user"
-                                      : "user"
-                                  }`}
+                                        ? "suadmin"
+                                        : user.role === "suadmin"
+                                          ? "smdl"
+                                          : user.role === "smdl"
+                                            ? "mdl"
+                                            : user.role === "mdl"
+                                              ? "dl"
+                                              : user.role === "dl"
+                                                ? "user"
+                                                : "user"
+                                    }`}
                                 >
                                   <p className="">{user.username}</p>
                                 </CustomLink>
@@ -1724,9 +1786,9 @@ const ListClients = () => {
                             </td>
                             <td>
                               {urole === "dl" ||
-                              urole === "mdl" ||
-                              urole === "smdl" ||
-                              urole === "suadmin"
+                                urole === "mdl" ||
+                                urole === "smdl" ||
+                                urole === "suadmin"
                                 ? user?.password
                                 : user?.password}
                             </td>
@@ -1844,7 +1906,7 @@ const ListClients = () => {
                                   }}
                                   title="View Exposure Details"
                                 >
-                              <i className="fas fa-eye"></i> {finalExposer(user?.balance)}
+                                  <i className="fas fa-eye"></i> {finalExposer(user?.balance)}
                                 </button>
                               </td>
                             ) : (
@@ -1881,51 +1943,51 @@ const ListClients = () => {
                       })}
                   </tbody>
                 </table>
-                     {users?.totalPages && users.totalPages > 1 && (
-  // <ReactPaginate
-  //   pageCount={users.totalPages}
-  //   onPageChange={handlePageClick}
-  //   forcePage={page - 1}
-  // />
-  // <ReactPaginate
-            
-  //               nextLabel="Next>>"
-  //               forcePage={page - 1}
-  //               onPageChange={handlePageClick}
-  //               // pageRangeDisplayed={5}
-  //               pageCount={users.totalPages}
+                {users?.totalPages && users.totalPages > 1 && (
+                  // <ReactPaginate
+                  //   pageCount={users.totalPages}
+                  //   onPageChange={handlePageClick}
+                  //   forcePage={page - 1}
+                  // />
+                  // <ReactPaginate
 
-  //                 // ✅ Hide Numbers
-  // pageRangeDisplayed={0}
-  // marginPagesDisplayed={0}
-  // breakLabel={null}
+                  //               nextLabel="Next>>"
+                  //               forcePage={page - 1}
+                  //               onPageChange={handlePageClick}
+                  //               // pageRangeDisplayed={5}
+                  //               pageCount={users.totalPages}
 
-  //               containerClassName={"pagination"}
-  //               activeClassName={"active"}
-  //               previousLabel={"<<Prev"}
-  //               breakClassName={"break-me"}
-          
-  //             />
+                  //                 // ✅ Hide Numbers
+                  // pageRangeDisplayed={0}
+                  // marginPagesDisplayed={0}
+                  // breakLabel={null}
 
-              <ReactPaginate
-  previousLabel={"<< Prev"}
-  nextLabel={"Next >>"}
-  onPageChange={handlePageClick}
-  forcePage={page - 1}
-  pageCount={users.totalPages}
+                  //               containerClassName={"pagination"}
+                  //               activeClassName={"active"}
+                  //               previousLabel={"<<Prev"}
+                  //               breakClassName={"break-me"}
 
-  // ✅ Hide Numbers
-  pageRangeDisplayed={0}
-  marginPagesDisplayed={0}
-  breakLabel={null}
+                  //             />
 
-  containerClassName="pagination"
-  activeClassName="active"
-/>
-)}
+                  <ReactPaginate
+                    previousLabel={"<< Prev"}
+                    nextLabel={"Next >>"}
+                    onPageChange={handlePageClick}
+                    forcePage={page - 1}
+                    pageCount={users.totalPages}
+
+                    // ✅ Hide Numbers
+                    pageRangeDisplayed={0}
+                    marginPagesDisplayed={0}
+                    breakLabel={null}
+
+                    containerClassName="pagination"
+                    activeClassName="active"
+                  />
+                )}
               </div>
-         
-              
+
+
             </div>
 
             {/* <div className=" h-20 mt-10 mb-10 bg-transparent text-white">..................</div> */}

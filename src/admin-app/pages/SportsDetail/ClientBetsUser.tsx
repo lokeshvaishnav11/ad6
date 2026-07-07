@@ -523,6 +523,21 @@ const ClientBetsUser = () => {
               ""
             )}
 
+             {isMobile ? (
+              <button
+                onClick={() => {
+                  setSession(!session);
+                  setShowmatch(false);
+                  setPlus(false);
+                }}
+                className="card-header-ledger text-left w-100 mb-2"
+              >
+                <span> Display Toss Bet</span>
+              </button>
+            ) : (
+              ""
+            )}
+
             {isMobile ? (
               <button
                 onClick={() => {

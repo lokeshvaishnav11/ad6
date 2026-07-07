@@ -991,7 +991,7 @@ input+.slider span:last-child {
 .btco-hover-menu a,
 .navbar>li>a {
   text-transform: capitalize;
-  padding: 2px 2px;
+  padding: 10px 2px;
 }
 
 .btco-hover-menu .active a,
@@ -1242,9 +1242,19 @@ input:checked+.slider {
 .data-table table td,
 .data-table table th {
   height: 40px;
-  padding: 0 4px !important;
+  padding: 4px 12px !important;
   vertical-align: middle;
   white-space: nowrap;
+}
+
+.serach-leger{
+      line-height: inherit;
+    color: inherit;
+    width: 100%;
+    height: 34px;
+    border: 2px solid gray;
+    padding: 4px;
+    margin-bottom: 8px;
 }
 
 .data-table table td a {
@@ -1257,7 +1267,7 @@ input:checked+.slider {
 
   border-radius: 3px;
   margin-right: 3px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   display: inline-block;
 }
 
@@ -1536,32 +1546,38 @@ ul.mtree.transit li.mtree-open>a::after {
 
 /* Actions div/modal-like container */
 .actions-td {
-  display: none;
-  /* Hidden by default */
   position: absolute;
-  /* Absolute positioning to open relative to the button */
-  background-color: white;
-  /* border: 1px solid #ccc; */
-  padding: 2px;
-  z-index: 50;
-  /* Ensure it is above other content */
-  /* top: 20%; */
-  /* left: 50%; */
+  top: 0;
+  left: 55px;
+
+  background: #fff;
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translate3d(70px, 0, 0);
+
+  transition:
+    transform 550ms cubic-bezier(.22,1,.36,1),
+    opacity 350ms ease,
+    visibility 0s linear 550ms;
+
+  will-change: transform, opacity;
+  pointer-events: none;
 }
 
-/* When the modal is opened, show it */
 .actions-td.open {
-  display: block;
-  /* Show when open */
-  position: absolute;
-  /* Absolute positioning to open relative to the button */
-  background-color: white;
-  /* border: 1px solid #ccc; */
-  padding: 2px;
-  z-index: 50;
-  /* Ensure it is above other content */
-  /* top: 20%; */
-  left: 50px;
+  opacity: 1;
+  visibility: visible;
+
+  transform: translate3d(0,0,0);
+
+  transition:
+    transform 550ms cubic-bezier(.22,1,.36,1),
+    opacity 350ms ease;
+
+  pointer-events: auto;
 }
 
 /* Actions container (Links) */
@@ -1570,7 +1586,8 @@ ul.mtree.transit li.mtree-open>a::after {
   border: 1px solid #ccc;
   padding: 2px;
   border-radius: 4px;
-  width: fit-content;
+  /* width: fit-content; */
+   width: 260px; 
   left: 0;
   top: 0;
   /* position: absolute; */

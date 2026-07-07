@@ -1,335 +1,3 @@
-// import React from 'react'
-
-// import { Tree } from 'antd'
-// import axios, { AxiosResponse } from 'axios'
-// import Drawer from 'react-modern-drawer'
-// import 'react-modern-drawer/dist/index.css'
-// import ISport from '../../../../models/ISport'
-// import User, { RoleType } from '../../../../models/User'
-// import { CustomLink, useNavigateCustom } from '../../../../pages/_layout/elements/custom-link'
-// import { logout, selectUserData, userUpdate } from '../../../../redux/actions/login/loginSlice'
-// import { selectSportList } from '../../../../redux/actions/sports/sportSlice'
-// import { useAppDispatch, useAppSelector } from '../../../../redux/hooks'
-// import casinoService from '../../../../services/casino.service'
-// import sportsService from '../../../../services/sports.service'
-// import userService from '../../../../services/user.service'
-// import CustomAutoComplete from '../../../components/CustomAutoComplete'
-// import Marqueemessge from './welcome'
-// import { DataNode } from 'antd/es/tree'
-
-// const Header = () => {
-//   const userState = useAppSelector<{ user: User }>(selectUserData)
-//   const dispatch = useAppDispatch()
-
-//   const navigate = useNavigateCustom()
-
-//   const [showMenu, setShowMenu] = React.useState<boolean>(false)
-//   const [treeData, setTreeData] = React.useState<any>([])
-//   const [expanded, setExpanded] = React.useState<string[]>([])
-
-//   const sportsList = useAppSelector(selectSportList)
-
-//   const [userMessage, setUserMessage] = React.useState<string>('')
-
-//   const [isOpen, setIsOpen] = React.useState(false)
-//   const [gameList, setGameList] = React.useState([])
-
-//   React.useEffect(() => {
-//     axios.get(`adminMessage.json?v=${Date.now()}`).then((res: AxiosResponse) => {
-//       setUserMessage(res.data.message)
-//     })
-//   }, [])
-
-//   React.useEffect(() => {
-//     if (gameList.length <= 0)
-//       casinoService.getCasinoList().then((res: AxiosResponse<any>) => {
-//         setGameList(res.data.data)
-//       })
-//   }, [])
-
-//   const toggleDrawer = () => {
-//     setIsOpen((prevState) => !prevState)
-//     setTreeData(
-//       sportsList.sports.map((sport: ISport) => ({ title: sport.name, key: sport.sportId })),
-//     )
-//   }
-
-//   const logoutUser = (e: any) => {
-//     e.preventDefault()
-//     dispatch(userUpdate({} as User))
-//     setTimeout(() => {
-//       dispatch(logout())
-//       navigate.go('/login')
-//     }, 1)
-//   }
-
-//   const onSuggestionsFetchRequested = ({ value }: any) => {
-//     return userService.getUserListSuggestion({ username: value })
-//   }
-
-//   const onSelectUser = (user: any) => {
-//     navigate.go(`/list-clients/${user.username}?search=true`)
-//   }
-
-//   const selectExpend = (item: any) => {
-//     if (item.matchId) {
-//       setIsOpen(false)
-//       window.location.href = `/admin/odds/${item.matchId}`
-//     }
-//   }
-
-//   const updateTreeData = (list: DataNode[], key: React.Key, children: DataNode[]): DataNode[] =>
-//     list.map((node) => {
-//       if (node.key === key) {
-//         return {
-//           ...node,
-//           children,
-//         }
-//       }
-//       if (node.children) {
-//         return {
-//           ...node,
-//           children: updateTreeData(node.children, key, children),
-//         }
-//       }
-//       return node
-//     })
-
-//   const onLoadData = (data: any) => {
-//     if (data.matchId) {
-//       selectExpend(data)
-//       return Promise.resolve()
-//     }
-//     return sportsService.getSeriesWithMatch(data.key).then((series: any) => {
-//       const items = series.data.data.map((series: any) => {
-//         const { id, name } = series.competition
-//         const matchNodes = series.matches.map((match: any) => {
-//           return {
-//             key: match.event.id,
-//             title: match.event.name,
-//             matchId: match.event.id,
-//           }
-//         })
-//         return {
-//           key: id,
-//           title: name,
-//           children: matchNodes,
-//         }
-//       })
-//       setTreeData((origin: any) => {
-//         return updateTreeData(origin, data.key, items)
-//       })
-
-//       return items
-//     })
-//   }
-
-//   return (
-//     <>
-//       <header>
-//         <div className='header-bottom'>
-//           <div className='container-fluid'>
-//             <CustomLink to={'/'} className='logo'>
-//               <img src='/imgs/logo.png' />
-//             </CustomLink>
-//             <div className='side-menu-button' onClick={toggleDrawer}>
-//               <div className='bar1' />
-//               <div className='bar2' />
-//               <div className='bar3' />
-//             </div>
-//             <nav className='navbar navbar-expand-md btco-hover-menu'>
-//               <div className='collapse navbar-collapse'>
-//                 <ul className='list-unstyled navbar-nav'>
-//                   <li className='nav-item'>
-//                     <CustomLink to={'/list-clients'}>
-//                       <b>List of clients</b>
-//                     </CustomLink>
-//                   </li>
-
-//                   <li className='nav-item'>
-//                     <CustomLink to={'/market-analysis'}>
-//                       <b>Market Analysis</b>
-//                     </CustomLink>
-//                   </li>
-//                   <li className='nav-item dropdown'>
-//                     <a>
-//                       <b>Reports</b> <i className='fa fa-caret-down' />
-//                     </a>
-//                     <ul className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-//                       <li>
-//                         <CustomLink to='/accountstatement' className='dropdown-item'>
-//                           <b>{"Account's Statement"}</b>
-//                         </CustomLink>
-//                       </li>
-//                       <li>
-//                         <CustomLink to='/unsettledbet' className='dropdown-item'>
-//                           <b>Current Bets</b>
-//                         </CustomLink>
-//                       </li>
-//                       {userState?.user?.role === RoleType.admin && (
-//                         <li>
-//                           <CustomLink to='/unsettledbet/deleted' className='dropdown-item'>
-//                             <b>Deleted Bets</b>
-//                           </CustomLink>
-//                         </li>
-//                       )}
-//                       {/* <li>
-//                         <a href='greport.html' className='dropdown-item'>
-//                           <b>General Report</b>
-//                         </a>
-//                       </li> */}
-//                       <li>
-//                         <CustomLink to='/game-reports' className='dropdown-item'>
-//                           <b>Game Reports</b>
-//                         </CustomLink>
-//                       </li>
-//                       <li>
-//                         <CustomLink to='/profitloss' className='dropdown-item'>
-//                           <b>Profit And Loss</b>
-//                         </CustomLink>
-//                       </li>
-//                     </ul>
-//                   </li>
-// {/*
-//                   <li className='nav-item dropdown'>
-//                     <a>
-//                       <b>Transactions</b> <i className='fa fa-caret-down' />
-//                     </a>
-//                     <ul className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-//                       <li>
-//                         <CustomLink to='/depositstatement' className='dropdown-item'>
-//                           <b>{"Deposit"}</b>
-//                         </CustomLink>
-//                       </li>
-//                       <li>
-//                         <CustomLink to='/withdrawstatement' className='dropdown-item'>
-//                           <b>Withdraw</b>
-//                         </CustomLink>
-//                       </li>
-//                     </ul>
-//                   </li> */}
-//                   <li className='nav-item dropdown'>
-//                     <a>
-//                       <b>Live Casino</b> <i className='fa fa-caret-down' />
-//                     </a>
-//                     <ul
-//                       className='dropdown-menu'
-//                       aria-labelledby='navbarDropdownMenuLink'
-//                       style={{ height: '400px', overflowY: 'scroll' }}
-//                     >
-//                       {gameList?.length > 0 &&
-//                         gameList.map((Item: any, key: number) => {
-//                           return (
-//                             <li key={key}>
-//                               <CustomLink to={`/casino/${Item.slug}`} className='dropdown-item'>
-//                                 <b>{Item.title}</b>
-//                               </CustomLink>
-//                             </li>
-//                           )
-//                         })}
-//                     </ul>
-//                   </li>
-
-//                     <li className='nav-item dropdown'>
-//                       <a>
-//                         <b>Settings</b> <i className='fa fa-caret-down' />
-//                       </a>
-//                       <ul className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-//                       {(userState?.user?.role === RoleType.admin) && (<>
-//                         <li>
-//                           <CustomLink to='/sports-list/active-matches' className='dropdown-item'>
-//                             <b>{'Block Markets'}</b>
-//                           </CustomLink>
-//                         </li>
-//                         <li>
-//                           <CustomLink to='/messages' className='dropdown-item'>
-//                             <b>{'Messages'}</b>
-//                           </CustomLink>
-//                         </li>
-//                         <li>
-//                           <CustomLink to={'/sports-list/matches'} className='dropdown-item'>
-//                             <b>Add Match List</b>
-//                           </CustomLink>
-//                         </li>
-
-//                         <li>
-//                           <CustomLink to='/casino-list' className='dropdown-item'>
-//                             <b>{'Casino List'}</b>
-//                           </CustomLink>
-//                         </li>
-//                       </>
-//                       )}
-
-//                       <li>
-//                         <CustomLink to='/payment-method' className='dropdown-item'>
-//                           <b>{'Payment Method'}</b>
-//                         </CustomLink>
-//                       </li>
-
-//                       <li>
-//                         <CustomLink to='/client-ledger' className='dropdown-item'>
-//                           <b>{'Client Ledger'}</b>
-//                         </CustomLink>
-//                       </li>
-//                       </ul>
-//                     </li>
-
-//                 </ul>
-//               </div>
-//             </nav>
-//             <ul className='user-search list-unstyled'>
-//               <li className='username'>
-//                 <span onClick={() => setShowMenu(!showMenu)}>
-//                   {userState?.user?.username} <i className='fa fa-caret-down' />
-//                 </span>
-//                 <ul style={{ display: showMenu ? 'block' : 'none' }}>
-//                   <li>
-//                     <CustomLink to='/change-password'>
-//                       <b>Change Password</b>
-//                     </CustomLink>
-//                   </li>
-//                   <li>
-//                     <a onClick={logoutUser} href='#'>
-//                       <b>Logout</b>
-//                     </a>
-//                   </li>
-//                 </ul>
-//               </li>
-//               <li className='search'>
-//                 <CustomAutoComplete
-//                   onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-//                   onSelectUser={onSelectUser}
-//                   placeHolder={'All Client'}
-//                 />
-//                 {/* <input id='tags' type='text' name='list' placeholder='All Client' />
-//                 <a id='clientList' data-value='' href='#'>
-//                   <i className='fas fa-search-plus' />
-//                 </a> */}
-//               </li>
-//             </ul>
-//             <Marqueemessge message={userMessage}></Marqueemessge>
-//           </div>
-//         </div>
-//       </header>
-//       <Drawer open={isOpen} onClose={toggleDrawer} direction='left'>
-//         <div className='drawer-header'>
-//           <img src='/imgs/logo.png' className='wd-100' />
-//         </div>
-//         <div className='drawer-content'>
-//           <Tree
-//             loadData={onLoadData}
-//             treeData={treeData}
-//             onSelect={(selectedKeys, e) => {
-//               selectExpend(e.node)
-//             }}
-//           />
-//         </div>
-//       </Drawer>
-//     </>
-//   )
-// }
-// export default Header
-
 import React from "react";
 
 import { Tree } from "antd";
@@ -379,6 +47,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import GroupIcon from "@mui/icons-material/Group";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoins, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const userState = useAppSelector<{ user: User }>(selectUserData);
@@ -600,6 +270,8 @@ const Header = () => {
   const [dropdownOpen2, setDropdownOpen2] = React.useState(false);
   const [dropdownOpen3, setDropdownOpen3] = React.useState(false);
   const [dropdownOpen4, setDropdownOpen4] = React.useState(false);
+    const [dropdownOpen5, setDropdownOpen5] = React.useState(false);
+
 
   //console.log(activeMenu, "active menu");
 
@@ -679,7 +351,7 @@ const Header = () => {
               <li className="username  text-white my-2">
                 <span
                   className="bg-gray-500 relative  rounded-sm px-2 py-2"
-                  style={{ backgroundColor: "rgb(120 120 120 / 57%)", color: "white" }}
+                  style={{ backgroundColor: "rgb(120 120 120 / 57%)",     color: "#a4f827"}}
                   onClick={() => setShowMenu(!showMenu)}
                 >
                   {userState?.user?.username} <i className="fa fa-caret-down" />
@@ -705,35 +377,33 @@ const Header = () => {
                 </ul>
               </li>
               <li className="search">
-                {/* <CustomAutoComplete
-                  onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                  onSelectUser={onSelectUser}
-                  placeHolder={"All Client"}
-                /> */}
-
-                {/* <input id='tags' type='text' name='list' placeholder='All Client' />
-                <a id='clientList' data-value='' href='#'>
-                  <i className='fas fa-search-plus' />
-                </a> */}
+               
               </li>
             </ul>
           </div>
         </div>
 
         <Marqueemessge message={notice?.bnotice || "."} />
-        <div
-          className={`top-0 fixed md:block ${
-            isOpen ? "block" : "hidden"
-          } nine-x-gray text-wrap  z-50 md:w-60	  h-full overflow-y-scroll`}
-          id="sidebar"
-          // className={`top-0 absolute md:block hidden   z-50 bg-gray-600  md:w-60 min-h-screen`}
-        >
-          {/* <button
-            className="side-menu-buttonn ml-2 text-black absolute top-0 right-1  block md:hidden text-white "
-            onClick={toggleDrawer}
-          >
-            <CloseIcon />
-          </button> */}
+  <div
+  className="nine-x-gray text-wrap md:w-60"
+  id="sidebar"
+  style={{
+    position: "fixed",
+    top: 0,
+    left: 0,
+    zIndex: 999,
+    height: "100%",
+    overflowY: "scroll",
+    backgroundColor: "#052a51",
+    transform: isOpen ? "translate3d(0,0,0)" : "translate3d(-100%,0,0)",
+    opacity: isOpen ? 1 : 0.6,
+    boxShadow: isOpen ? "4px 0 20px rgba(0,0,0,0.35)" : "none",
+    transition:
+      "transform 850ms cubic-bezier(.16,1,.3,1), opacity 700ms ease, box-shadow 700ms ease",
+    willChange: "transform, opacity",
+  }}
+>
+          
 
           <CustomLink
             to={"/"}
@@ -748,18 +418,7 @@ const Header = () => {
             <nav className="navbar navbar-expand btco-hover-menu ">
               <div className="collapse navbar-collapse">
                 <ul className="list-unstyled navbar-nav navbar-new grid">
-                  {/* <li className="nav-item border-b-4 border-black md:w-60 w-fit ">
-                    <CustomLink
-                      onClick={toggleDrawer}
-                      className="md:flex gap-2 md:flex-row flex flex-col items-center"
-                      to={"/list-clients"}
-                    >
-                      <TvIcon className="text-warning " />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        Dashboard
-                      </b>
-                    </CustomLink>
-                  </li> */}
+                
 
                   <li
                     className={`nav-item  border-b md:w-60 w-fit ${
@@ -781,18 +440,7 @@ const Header = () => {
                     </CustomLink>
                   </li>
 
-                  {/* <li className="nav-item border-b-4 border-black md:w-60">
-                    <CustomLink
-                      onClick={toggleDrawer}
-                      className="md:flex md:flex-row flex flex-col gap-2 items-center"
-                      to={`/list-clients/${userState?.user?.username}`}
-                    >
-                      <ListIcon className="text-warning  " />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        {userState?.user?.username}
-                      </b>
-                    </CustomLink>
-                  </li> */}
+                  
 
                   <li
                     className={` ${
@@ -800,21 +448,7 @@ const Header = () => {
                     } nav-item dropdown border-b md:w-60 group relative`}
                   >
                     <CustomLink
-                      // to={`/list-clients/${userState?.user?.username}/${userState?.user?.role === "admin"
-                      //     ? "sadmin"
-                      //     : userState?.user?.role === "sadmin"
-                      //     ? "suadmin"
-                      //     : userState?.user?.role === "suadmin"
-                      //     ? "smdl"
-                      //     : userState?.user?.role === "smdl"
-                      //     ? "mdl"
-                      //     : userState?.user?.role === "mdl"
-                      //     ? "dl"
-                      //     : userState?.user?.role === "dl"
-                      //     ? "user"
-                      //     : userState?.user?.role === "user"
-                      //     ? "Client Master"
-                      //     : ""}`}
+                     
                       to={`/market-analysis`}
                       className="md:flex py-2  md:flex-row flex flex-col gap-2 items-center cursor-pointer"
                       onClick={() => {
@@ -852,10 +486,10 @@ const Header = () => {
                         {getRoleOptions().map((role) => (
                           <li
                             key={role.key}
-                            className="border-b-4 border-black pb-2"
+                            className="border-b border-white pb-1 heder-height"
                           >
-                            <CustomLink
-                              to={`/list-clients/${userState?.user?.username}/${role.key}`}
+                            <a
+                              href={`/admin/list-clients/${userState?.user?.username}/${role.key}`}
                               // onClick={() => setDropdownOpen(!dropdownOpen)}
                               //  onClick={toggleDrawer}
                               onClick={() => {
@@ -863,19 +497,13 @@ const Header = () => {
                                 setDropdownOpen(!dropdownOpen);
                                 setActiveMenu("User");
                               }}
-                              className="dropdown-item hover:bg-gray-400"
+                              className="dropdown-item hover:bg-gray-400 text-white mobile-style md:text-lg text-xs  md:flex md:flex-row flex flex-row items-center"
                             >
-                              <b className="text-white mobile-style md:text-lg text-xs  md:flex md:flex-row flex flex-col items-center gap-1">
-                                <ListIcon className="text-black-600 side-bar-icon" />
-                                {role.label}(
-                                {
-                                  userList?.items?.filter(
-                                    (i: any) => i.role === `${role.key}`
-                                  )?.length
-                                }
-                                )
-                              </b>
-                            </CustomLink>
+                              <span className=" ">
+                               <FontAwesomeIcon icon={faUsers} className="side-bar-icon-inside" />
+                                {role.label}
+                              </span>
+                            </a>
                           </li>
                         ))}
                       </div>
@@ -898,7 +526,7 @@ const Header = () => {
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                       to="/sports-details"
                     >
-                      <SportsSoccerIcon className="text-warning side-bar-icon" />
+<FontAwesomeIcon icon={faCoins} className="text-warning side-bar-icon" />                    
                       <b className="md:text-lg text-xs font-medium text-white">
                         Sport's Betting
                       </b>
@@ -919,9 +547,9 @@ const Header = () => {
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                       to="/casino-details"
                     >
-                      <SummarizeIcon className="text-warning side-bar-icon" />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        Casino Betting
+<FontAwesomeIcon icon={faCoins} className="text-warning side-bar-icon" />                    
+<b className="md:text-lg text-xs font-medium text-white">
+                        Casino P/L
                       </b>
                     </CustomLink>
                   </li>
@@ -940,9 +568,9 @@ const Header = () => {
                       className="md:flex gap-2 py-2  md:flex-row flex flex-col items-center"
                       to="/matka-pl"
                     >
-                      <SummarizeIcon className="text-warning side-bar-icon" />
+<FontAwesomeIcon icon={faCoins} className="text-warning side-bar-icon" />                    
                       <b className="md:text-lg text-xs font-medium text-white">
-                        Matka Betting
+                        Matka P/L
                       </b>
                     </CustomLink>
                   </li>
@@ -1007,32 +635,7 @@ const Header = () => {
                     )}
                   </li>
 
-                  {/* <li className="nav-item dropdown border-b-4 border-black md:w-60">
-                    <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
-                      <SummarizeIcon className="text-warning" />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        {userState?.user?.username}
-                      </b>{" "}
-                      <i className="fa fa-caret-down text-white" />
-                    </a>
-                    <ul
-                      className="dropdown-menu bg-neutral-700 mt-4"
-                      aria-labelledby="navbarDropdownMenuLink"
-                    >
-                      <li>
-                        <CustomLink
-                          onClick={toggleDrawer}
-                          to="/my-ledger"
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            {"My Ledger"}
-                          </b>
-                        </CustomLink>
-                      </li>
-                    </ul>
-                  </li> */}
+                
 
                   <li className="nav-item hidden dropdown border-b-4 border-black md:w-60">
                     <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
@@ -1046,45 +649,11 @@ const Header = () => {
                       className="dropdown-menu bg-neutral-700 mt-4 "
                       aria-labelledby="navbarDropdownMenuLink"
                     >
-                      {/* <li>
-                        <CustomLink
-                          onClick={toggleDrawer}
-                          to="/active-matches/4"
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            {"Sports Details"}
-                          </b>
-                        </CustomLink>
-                      </li> */}
+                      
 
                       {userState?.user?.role === RoleType.admin && (
                         <>
-                          {/* <li>
-                            <CustomLink
-                              onClick={toggleDrawer}
-                              to="/sports-list/active-matches"
-                              className="dropdown-item"
-                            >
-                              <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-warning" />
-                                {"Block Markets"}
-                              </b>
-                            </CustomLink>
-                          </li> */}
-                          {/* <li>
-                            <CustomLink
-                              onClick={toggleDrawer}
-                              to="/messages"
-                              className="dropdown-item"
-                            >
-                              <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-warning" />
-                                {"Messages"}
-                              </b>
-                            </CustomLink>
-                          </li> */}
+                       
                           <li>
                             <CustomLink
                               // onClick={toggleDrawer}
@@ -1098,160 +667,17 @@ const Header = () => {
                             </CustomLink>
                           </li>
 
-                          {/* <li>
-                            <CustomLink
-                              onClick={toggleDrawer}
-                              to="/casino-list"
-                              className="dropdown-item"
-                            >
-                              <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                <TuneIcon className="text-warning" />
-                                {"Casino List"}
-                              </b>
-                            </CustomLink>
-                          </li> */}
+                         
                         </>
                       )}
 
-                      {/* <li>
-                        <CustomLink
-                          to="/unsettledbet"
-                          onClick={toggleDrawer}
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            Total Profit
-                          </b>
-                        </CustomLink>
-                      </li> */}
-                      {/* {userState?.user?.role === RoleType.admin && (
-                        <li>
-                          <CustomLink
-                            onClick={toggleDrawer}
-                            to="/unsettledbet/deleted"
-                            className="dropdown-item"
-                          >
-                            <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
-                              Deleted Bets
-                            </b>
-                          </CustomLink>
-                        </li>
-                      )} */}
-                      {/* <li>
-                        <a href='greport.html' className='dropdown-item'>
-                          <b>General Report</b>
-                        </a>
-                      </li> */}
-                      {/* <li>
-                        <CustomLink
-                          to="/game-reports"
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            Game Reports
-                          </b>
-                        </CustomLink>
-                      </li> */}
-                      {/* <li>
-                        <CustomLink to='/profitloss' className='dropdown-item'>
-                          <b className='text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1'><ListIcon className='text-warning' />Profit And Loss</b>
-                        </CustomLink>
-                      </li> */}
+                     
+                    
+                    
                     </ul>
                   </li>
 
-                  {/* <li className={`nav-item border-b-4 border-black md:w-60 ${activeMenu === "Casino" ? "bg-active": ""}`}>
-                    <CustomLink
-                      // onClick={toggleDrawer}
-                      onClick={() => { toggleDrawer(); setActiveMenu("Casino");}}
-                      className="md:flex py-2  md:flex-row flex flex-col gap-2 items-center"
-                      to={"/matka-pl"}
-                    >
-                      <AssessmentIcon className="text-warning " />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        Matka P/L
-                      </b>
-                    </CustomLink>
-                  </li> */}
-
-                  {/* <li className="nav-item border-b-4 border-black md:w-60">
-                    <CustomLink
-                      onClick={toggleDrawer}
-                      className="md:flex md:flex-row flex flex-col gap-2 items-center"
-                      to={"/market-analysis"}
-                    >
-                      <AssessmentIcon className="text-warning " />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        Market Analysis
-                      </b>
-                    </CustomLink>
-                  </li> */}
-
-                  {/* <li className="nav-item dropdown border-b-4 border-black md:w-60">
-                    <a className="md:flex md:flex-row flex flex-col gap-2 items-center">
-                      <SummarizeIcon className="text-warning" />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        Reports
-                      </b>{" "}
-                      <i className="fa fa-caret-down text-white" />
-                    </a>
-                    <ul
-                      className="dropdown-menu bg-neutral-700 mt-4"
-                      aria-labelledby="navbarDropdownMenuLink"
-                    >
-                      <li>
-                        <CustomLink
-                          to="/accountstatement"
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            Account's Statement
-                          </b>
-                        </CustomLink>
-                      </li>
-                      <li>
-                        <CustomLink
-                          to="/unsettledbet"
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            Current Bets
-                          </b>
-                        </CustomLink>
-                      </li>
-                      {userState?.user?.role === RoleType.admin && (
-                        <li>
-                          <CustomLink
-                            to="/unsettledbet/deleted"
-                            className="dropdown-item"
-                          >
-                            <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
-                              Deleted Bets
-                            </b>
-                          </CustomLink>
-                        </li>
-                      )}
-                      
-                      <li>
-                        <CustomLink
-                          to="/game-reports"
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            Game Reports
-                          </b>
-                        </CustomLink>
-                      </li>
-                      
-                    </ul>
-                  </li> */}
+                  
 
                   <li
                     className={`nav-item dropdown border-b md:w-60 ${
@@ -1265,7 +691,7 @@ const Header = () => {
                       }}
                       className={`md:flex py-2  md:flex-row flex flex-col gap-2 items-center `}
                     >
-                      <ReceiptLongIcon className="text-warning side-bar-icon" />
+                       <ListIcon className="text-warning side-bar-icon" />
                       <b className="md:text-lg text-xs font-medium text-white">
                         Ledger
                       </b>{" "}
@@ -1278,27 +704,27 @@ const Header = () => {
                         style={{ background: "#052a51" }}
                       >
                         <li className="border-b-4 border-black pb-2">
-                          <CustomLink
+                          <a
                             //  onClick={() => setDropdownOpen3(!dropdownOpen3)}
                             onClick={() => {
                               toggleDrawer();
                               setActiveMenu("My");
                             }}
-                            to="/my-ledger"
+                            href="/admin/my-ledger"
                             className={`dropdown-item border-b-4 border-black ${
                               activeMenu === "My" ? "bg-active" : ""
-                            }`}
+                            } text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-row items-center`}
                           >
-                            <b className="text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning side-bar-icon" />
+                            <span className="">
+                              <ListIcon className="text-warning side-bar-icon-inside" />
                               {"My Ledger"}
-                            </b>
-                          </CustomLink>
+                            </span>
+                          </a>
                         </li>
 
                         <li className="border-b-4 border-black pb-2">
-                          <CustomLink
-                            to="/all-settlement"
+                          <a
+                            href="/admin/all-settlement"
                             // onClick={() => setDropdownOpen3(!dropdownOpen3)}
                             onClick={() => {
                               toggleDrawer();
@@ -1306,22 +732,22 @@ const Header = () => {
                             }}
                             className={`dropdown-item border-b-4 border-black border-white/30 ${
                               activeMenu === "All" ? "bg-active" : ""
-                            }`}
+                            } text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-row items-center`}
                           >
-                            <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning side-bar-icon" />
+                            <span>
+                              <ListIcon className="text-warning side-bar-icon-inside" />
                               All{" "}
                               {userState?.user?.role === RoleType.dl
                                 ? "Client"
                                 : "Agent"}{" "}
                               Ledger
-                            </b>
-                          </CustomLink>
+                            </span>
+                          </a>
                         </li>
 
                         <li className="border-b-4 border-black pb-2">
-                          <CustomLink
-                            to="/total-profit"
+                          <a
+                            href="/admin/total-profit"
                             // onClick={() => setDropdownOpen3(!dropdownOpen3)}
                             onClick={() => {
                               toggleDrawer();
@@ -1329,18 +755,18 @@ const Header = () => {
                             }}
                             className={`dropdown-item  border-b-4 border-black border-white/30 ${
                               activeMenu === "Total" ? "bg-active" : ""
-                            }`}
+                            } text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-row items-center`}
                           >
-                            <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning side-bar-icon" />
-                              Total Profit
-                            </b>
-                          </CustomLink>
+                            <span >
+                              <ListIcon className="text-warning side-bar-icon-inside" />
+                             {" Total Profit"}
+                            </span>
+                          </a>
                         </li>
 
                         <li className="pb-2">
-                          <CustomLink
-                            to="/ledger-client"
+                          <a
+                            href="/admin/ledger-client"
                             // onClick={() => setDropdownOpen3(!dropdownOpen3)}
                             onClick={() => {
                               toggleDrawer();
@@ -1348,134 +774,167 @@ const Header = () => {
                             }}
                             className={`dropdown-item ${
                               activeMenu === "ALedger" ? "bg-active" : ""
-                            }`}
+                            } text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-row items-center`}
                           >
-                            <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning side-bar-icon" />
+                            <span>
+                              <ListIcon className="text-warning side-bar-icon-inside"  />
                               {userState?.user?.role === RoleType.dl
                                 ? "Client"
                                 : "Agent"}{" "}
                               Ledger
-                            </b>
-                          </CustomLink>
+                            </span>
+                          </a>
                         </li>
 
-                        {userState?.user?.role === "dl" ? (
-                          <li>
-                            <CustomLink
+                        {true ? (
+                          <>
+                          <li className="border-b-4 border-black pb-2">
+                            <a
                               //  onClick={() => setDropdownOpen3(!dropdownOpen3)}
                               onClick={() => {
                                 toggleDrawer();
                                 setActiveMenu("Comm");
                               }}
-                              to="/commision-len-den"
+                              href="/admin/commision-len-den"
                               className={`dropdown-item ${
                                 activeMenu === "Comm" ? "bg-active" : ""
-                              }`}
+                              } text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center mobile-style`}
                             >
-                              <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                                <ListIcon className="text-warning side-bar-icon" />
+                              <span className="">
+                                <ListIcon className="text-warning side-bar-icon-inside" />
                                 {"कमीशन लेन देन"}
-                              </b>
-                            </CustomLink>
+                              </span>
+                            </a>
                           </li>
+                            <li className="border-b-4 border-black pb-2">
+                            <a
+                              //  onClick={() => setDropdownOpen3(!dropdownOpen3)}
+                              onClick={() => {
+                                toggleDrawer();
+                                setActiveMenu("Comm");
+                              }}
+                              href="/admin/commision-len-den"
+                              className={`dropdown-item ${
+                                activeMenu === "Comm" ? "bg-active" : ""
+                              } text-white md:text-lg text-xs md:flex md:flex-row flex flex-row items-center mobile-style`}
+                            >
+                              <span className="">
+                                <ListIcon className="text-warning side-bar-icon-inside"  />
+                                {"कमीशन लेन देन 2"}
+                              </span>
+                            </a>
+                          </li></>
                         ) : (
                           ""
                         )}
 
-                        {/* {userState?.user?.role === RoleType.admin && (
-                        <li>
-                          <CustomLink
-                            onClick={toggleDrawer}
-                            to="/unsettledbet/deleted"
-                            className="dropdown-item"
-                          >
-                            <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                              <ListIcon className="text-warning" />
-                              Deleted Bets
-                            </b>
-                          </CustomLink>
-                        </li>
-                      )} */}
-                        {/* <li>
-                        <a href='greport.html' className='dropdown-item'>
-                          <b>General Report</b>
-                        </a>
-                      </li> */}
-                        {/* <li>
-                        <CustomLink
-                          to="/game-reports"
-                          className="dropdown-item"
-                        >
-                          <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
-                            <ListIcon className="text-warning" />
-                            Game Reports
-                          </b>
-                        </CustomLink>
-                      </li> */}
-                        {/* <li>
-                        <CustomLink to='/profitloss' className='dropdown-item'>
-                          <b className='text-white md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1'><ListIcon className='text-warning' />Profit And Loss</b>
-                        </CustomLink>
-                      </li> */}
+                      
                       </div>
                     ) : (
                       ""
                     )}
                   </li>
-                  {/* 
-                  <li className='nav-item dropdown'>
-                    <a>
-                      <b>Transactions</b> <i className='fa fa-caret-down' />
-                    </a>
-                    <ul className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-                      <li>
-                        <CustomLink to='/depositstatement' className='dropdown-item'>
-                          <b>{"Deposit"}</b>
-                        </CustomLink>
-                      </li>
-                      <li>
-                        <CustomLink to='/withdrawstatement' className='dropdown-item'>
-                          <b>Withdraw</b>
-                        </CustomLink>
-                      </li>
-                    </ul>
-                  </li> */}
+                
 
-                  {/* <li className="nav-item dropdown border-b-4 border-black md:w-60">
-                    <a className="md:flex md:flex-row flex flex-col gap-2 items-center ">
-                      <CasinoIcon className="text-warning" />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        Sports Detail
-                      </b>{" "}
-                      <i className="fa fa-caret-down text-white" />
-                    </a>
-                    <ul
-                      className="dropdown-menu mt-4"
-                      aria-labelledby="navbarDropdownMenuLink"
-                      style={{ height: "400px", overflowY: "scroll" }}
+
+                
+                  <li
+                    className={`nav-item border-b md:w-60 w-fit ${
+                      activeMenu === "Report" ? "bg-active" : ""
+                    } `}
+                  >
+                    <CustomLink
+                      // onClick={toggleDrawer}
+                      onClick={() => {
+                        toggleDrawer();
+                        setActiveMenu("Report");
+                      }}
+                      className="md:flex gap-2 py-2 md:flex-row flex flex-col items-center"
+                      to={"/all-client-report"}
                     >
-                      {gameList?.length > 0 &&
-                        gameList.map((Item: any, key: number) => {
-                          return (
-                            <li key={key}>
-                              <CustomLink
-                                onClick={toggleDrawer}
-                                to={`/casino/${Item.slug}`}
-                                className="dropdown-item"
-                              >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <ListIcon className="text-warning" />
-                                  {Item.title}
-                                </b>
-                              </CustomLink>
-                            </li>
-                          );
-                        })}
-                    </ul>
-                  </li> */}
+<FontAwesomeIcon icon={faCoins} className="text-warning side-bar-icon" />                    
+                      <b className="md:text-lg text-xs font-medium text-white">
+                        All{" "}
+                        {userState?.user?.role === RoleType.dl
+                          ? "Client"
+                          : "Agent"}{" "}
+                        Report
+                      </b>
+                    </CustomLink>
+                  </li>
 
-                  {userState?.user?.role === RoleType.admin && location.pathname === "/admin/id-king/new/one"   && (
+                    <li
+                    className={` ${
+                      activeMenu === "User" ? "bg-active" : ""
+                    } nav-item dropdown border-b md:w-60 group relative`}
+                  >
+                    <CustomLink
+                   
+                      to={`/market-analysis`}
+                      className="md:flex py-2  md:flex-row flex flex-col gap-2 items-center cursor-pointer"
+                      onClick={() => {
+                        setDropdownOpen5(!dropdownOpen5);
+                        setActiveMenu("User");
+                      }}
+                    >
+                      <GroupIcon className="text-warning side-bar-icon" />
+                      <b className="md:text-lg text-xs font-medium  text-white">
+                        {/* {userState?.user?.role  === 'mdl' ? 'Agent Master' : "" } */}
+                        {userState?.user?.role === "admin"
+                          ? "Dead Super Admin"
+                          : userState?.user?.role === "sadmin"
+                          ? "Dead Sub Admin"
+                          : userState?.user?.role === "suadmin"
+                          ? "Dead Admin"
+                          : userState?.user?.role === "smdl"
+                          ? "Dead Master Agent"
+                          : userState?.user?.role === "mdl"
+                          ? "Dead Super Agent Master"
+                          : userState?.user?.role === "dl"
+                          ? "Dead Agent Master"
+                          : userState?.user?.role === "user"
+                          ? "Dead Client Master"
+                          : ""}
+                      </b>
+                      <i className="fa fa-caret-down text-white" />
+                    </CustomLink>
+
+                    {dropdownOpen5 ? (
+                      <div
+                        style={{ background: "#052a51" }}
+                        className="dropdown-menuj bg-neutral-700 md:pl-2   absolutek z-50 hiddenj group-hover:block w-full"
+                      >
+                        {getRoleOptions().map((role) => (
+                          <li
+                            key={role.key}
+                            className="border-b border-white pb-1 heder-height"
+                          >
+                            <a
+                              href={`/admin/list-clients/${userState?.user?.username}/${role.key}`}
+                              // onClick={() => setDropdownOpen(!dropdownOpen)}
+                              //  onClick={toggleDrawer}
+                              onClick={() => {
+                                toggleDrawer();
+                                setDropdownOpen(!dropdownOpen);
+                                setActiveMenu("User");
+                              }}
+                              className="dropdown-item hover:bg-gray-400 text-white mobile-style md:text-lg text-xs  md:flex md:flex-row flex flex-row items-center"
+                            >
+                              <span className=" ">
+                               <FontAwesomeIcon icon={faUsers} className="side-bar-icon-inside" />
+                                {role.label}
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </li>
+
+
+                    {(
                     <li
                       className={`nav-item dropdown border-b md:w-60 w-fit ${
                         activeMenu === "Setting" ? "bg-active" : ""
@@ -1488,7 +947,7 @@ const Header = () => {
                         }}
                         className="md:flex py-2  md:flex-row flex flex-col gap-1 items-center"
                       >
-                        <SettingsIcon className="text-warning side-bar-icon" />
+                                    <ListIcon className="text-warning side-bar-icon" />
                         <b className="md:text-lg text-xs font-medium text-white">
                           Settings
                         </b>{" "}
@@ -1502,18 +961,7 @@ const Header = () => {
                         >
                           {userState?.user?.role === RoleType.admin && (
                             <>
-                              {/* <li>
-                              <CustomLink
-                                onClick={toggleDrawer}
-                                to="/messages"
-                                className="dropdown-item"
-                              >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <TuneIcon className="text-warning" />
-                                  {"Messages"}
-                                </b>
-                              </CustomLink>
-                            </li> */}
+                             
                               <li className="border-b-4 border-black pb-2">
                                 <CustomLink
                                   // onClick={() => setDropdownOpen4(!dropdownOpen4)}
@@ -1572,25 +1020,7 @@ const Header = () => {
                                 </CustomLink>
                               </li>
 
-                              {/* <li className="border-b-4 border-black pb-2">
-                                <CustomLink
-                                  // onClick={() => setDropdownOpen4(!dropdownOpen4)}
-                                  // to="/sports-list/active-matches"
-                                  onClick={() => {
-                                    toggleDrawer();
-                                    setActiveMenu("BM");
-                                  }}
-                                  to="/matka-results"
-                                  className={`dropdown-item ${
-                                    activeMenu === "BM" ? "bg-active" : ""
-                                  }`}
-                                >
-                                  <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                    <TuneIcon className="text-warning" />
-                                    {"Matka Markets"}
-                                  </b>
-                                </CustomLink>
-                              </li> */}
+                             
 
                               <li className="border-b-4 border-black pb-2">
                                 <CustomLink
@@ -1644,139 +1074,51 @@ const Header = () => {
                                 </CustomLink>
                               </li>
 
-                              <li className="border-b-4 border-black pb-2">
+                             
+                             
+
+                            
+                            </>
+                          )}
+
+                    
+
+     <li className="border-b-4 border-black pb-2">
                                 <CustomLink
                                   // onClick={() => setDropdownOpen4(!dropdownOpen4)}
                                   onClick={() => {
                                     toggleDrawer();
                                     setActiveMenu("NC");
                                   }}
-                                  to="/notice"
+                                  to="/serach"
                                   className={`dropdown-item ${
                                     activeMenu === "NC" ? "bg-active" : ""
                                   }`}
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                                     <ListIcon className="text-warning side-bar-icon" />
-                                    Notice
+                                    serach
                                   </b>
                                 </CustomLink>
                               </li>
 
-                             
-
-                              {/* <li>
-                              <CustomLink
-                                onClick={toggleDrawer}
-                                to="/casino-list"
-                                className="dropdown-item"
-                              >
-                                <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-                                  <TuneIcon className="text-warning" />
-                                  {"Casino List"}
-                                </b>
-                              </CustomLink>
-                            </li> */}
-                            </>
-                          )}
-
-                          {/* <li>
-      <CustomLink
-        onClick={toggleDrawer}
-        to="/payment-method"
-        className="dropdown-item"
-      >
-        <b className="text-white md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
-          <TuneIcon className="text-warning" />
-          {"Payment Method"}
-        </b>
-      </CustomLink>
-    </li> */}
-
-                          {/* <li>
-      <CustomLink
-        to="/client-ledger"
-        className="dropdown-item"
-      >
-        <b className="text-white md:flex md:flex-row flex flex-col gap-1 items-center">
-          <TuneIcon className="text-warning" />
-          {"Client Ledger"}
-        </b>
-      </CustomLink>
-    </li> */}
                         </div>
                       ) : (
                         ""
                       )}
                     </li>
                   )}
-                  <li
-                    className={`nav-item border-b md:w-60 w-fit ${
-                      activeMenu === "Report" ? "bg-active" : ""
-                    } `}
-                  >
-                    <CustomLink
-                      // onClick={toggleDrawer}
-                      onClick={() => {
-                        toggleDrawer();
-                        setActiveMenu("Report");
-                      }}
-                      className="md:flex gap-2 py-2 md:flex-row flex flex-col items-center"
-                      to={"/all-client-report"}
-                    >
-                      <LocalOfferIcon className="text-warning side-bar-icon" />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                        All{" "}
-                        {userState?.user?.role === RoleType.dl
-                          ? "Client"
-                          : "Agent"}{" "}
-                        Report
-                      </b>
-                    </CustomLink>
-                  </li>
 
-                   {/* <li
-                    className={`nav-item border-b md:w-60 w-fit ${
-                      activeMenu === "Report" ? "bg-active" : ""
-                    } `}
-                  >
-                    <a href="https://olddata.sixrun.pro"
-                    >
-                      <LocalOfferIcon className="text-warning " />
-                      <b className="md:text-lg text-xs font-medium text-white">
-                      Old Data Link
-                      </b>
-                    </a>
-                  </li> */}
                 </ul>
               </div>
             </nav>
           </div>
         </div>
 
-        {/* <Marqueemessge message={userMessage}></Marqueemessge> */}
+        <Marqueemessge message={userMessage}></Marqueemessge>
       </header>
 
-      {/* <Drawer open={isOpen} onClose={toggleDrawer} direction='left'>
-        <div className='drawer-header'>
-          <img src='/imgs/logo.png' className='wd-100' />
-        </div>
-        <div className='drawer-content'>
-          <Tree
-            loadData={onLoadData}
-            treeData={treeData}
-            onSelect={(selectedKeys, e) => {
-              selectExpend(e.node)
-            }}
-          />
-        </div>
-
-        
-
-
-
-
-      </Drawer> */}
+   
     </>
   );
 };

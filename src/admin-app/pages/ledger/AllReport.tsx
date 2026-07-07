@@ -313,10 +313,10 @@ const AllReport = () => {
   
 
   return (
-    <div style={{ zoom: 0.4 }}>
-      <div className="relative">
+    <div >
+      {/* <div className="relative">
         <h2 className="ledger-title text-xl">All Client Report</h2>
-      </div>
+      </div> */}
 
       <div className="control-group mt-2 container-fluid selectize-control single">
         <div className="row p-2 ng-scope">
@@ -363,7 +363,7 @@ const AllReport = () => {
             </option>
           ))}
         </select>
-
+{/* 
         <div className="row mt-2">
           <div className="col-sm-12 col-md-6"></div>
           <div className="col-sm-12 col-md-6">
@@ -380,7 +380,7 @@ const AllReport = () => {
               </label>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="container-fluid mt-2">
@@ -615,7 +615,8 @@ const AllReport = () => {
                           title="Details"
                           className="btn-view-details btn btn-warning btn-sm small m-0"
                         >
-                          <i className="fas fa-window-maximize"></i>
+                          {/* <i className="fas fa-window-maximize"></i> */}
+                          Details
                         </button>
                       </td>
 

@@ -288,8 +288,8 @@ const SportsDetails = () => {
         id="DataTables_Table_0"
         role="grid"
       >
-        <thead style={{ width: "100%", overflowX: "auto" }} className="small">
-          <tr role="row">
+        <thead style={{ width: "100%", overflowX: "auto" }} className="">
+          <tr role="row" style={{background:"rgb(5, 42, 81)",color:"white"}}>
             <th
               className="sorting_disabled"
               rowSpan={1}
@@ -340,7 +340,7 @@ const SportsDetails = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="small">
+        <tbody className="">
           {/* <tr role="row" className="odd">
             <td className="ng-scope">
               <ul
@@ -454,7 +454,7 @@ const SportsDetails = () => {
                 className="ng-scope position-relative"
               >
                 <button onClick={() => handleToggle(item._id)}>
-                  <ArrowDropDownIcon />
+                  <ArrowDropDownIcon style={{fontSize:"47px"}}/>
                 </button>
 
                 {close === item._id && (

@@ -926,18 +926,17 @@ const AllClientLedger = () => {
   // UI
   //////////////////////////////////////////////////////
   return (
-    <div style={{ zoom: 0.8 }}>
-      <p className="text-center bg-secondary tx-12 text-white p-1">My Ledger</p>
+    <div >
 
       <div className="ledger-container">
-        <h2 className="ledger-title">All Client Ledger</h2>
+        <h2 className="ledger-title">All Super Admin Ledger</h2>
 
         {/* ✅ LENA */}
-        <h3>PAYMENT RECEIVING FROM (LENA HAI)</h3>
-        <div className="table-section overflow-auto">
+        <h3 className="mt-4 text-center table-section">PAYMENT RECEIVING FROM (LENA HAI)</h3>
+        <div className=" overflow-auto">
           <table className="ledger-table">
             <thead>
-              <tr>
+              <tr className="table-section">
                 <th>AGENT</th>
                 <th>AMOUNT</th>
                 <th>SETTLED</th>
@@ -972,6 +971,12 @@ const AllClientLedger = () => {
                     >
                       <PaymentsIcon /> Settlement
                     </button>
+                     <button
+                      className="btn  btn-sm mt-2 " style={{border:"1px solid red"}}
+                     
+                    >
+                       Details
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -989,8 +994,72 @@ const AllClientLedger = () => {
         </div>
 
         {/* ✅ DENA */}
-        <h3 className="mt-4">PAYMENT PAID TO (DENA HAI)</h3>
-        <div className="table-section overflow-auto">
+        <h3 className="mt-4 text-center table-section">PAYMENT PAID TO (DENA HAI)</h3>
+        <div className="overflow-auto">
+          <table className="ledger-table">
+            <thead className="table-section">
+              <tr className="table-section">
+                <th>AGENT</th>
+                <th>AMOUNT</th>
+                <th>SETTLED</th>
+                <th className="bg-final2 text-white">FINAL</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {dena.map((row) => (
+                <tr key={row.ChildId}>
+                  <td>
+                    <CustomLink to={`/all-settlement/${row.ChildId}`}>
+                      {row.agent}
+                    </CustomLink>
+                  </td>
+                  <td>{row.amount.toFixed(2)}</td>
+                  <td>{row.settled.toFixed(2)}</td>
+                  <td className="bg-final2 text-white">
+                    {row.final.toFixed(2)}
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-warning btn-sm"
+                      onClick={() => {
+                        setSelectedEntry(row);
+                        setInputAmount(0);
+                        setRemark("");
+                        setModalType("dena");
+                        setShowModal(true);
+                      }}
+                    >
+                      <PaymentsIcon /> Settlement
+                    </button>
+                     <button
+                      className="btn btn-warning btn-sm"
+                     
+                    >
+                       Details
+                    </button>
+                  </td>
+                </tr>
+              ))}
+
+              <tr className="font-weight-bold bg-light">
+                <td>DENA HAI</td>
+                <td>{denaTotals.amount.toFixed(2)}</td>
+                <td>{denaTotals.settled.toFixed(2)}</td>
+                <td className="bg-final2 text-white">
+                  {denaTotals.final.toFixed(2)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+  <h3 className="mt-4 text-center table-section">PAYMENT CELAR HAI</h3>
+        <div className="overflow-auto">
           <table className="ledger-table">
             <thead>
               <tr>
@@ -1043,7 +1112,6 @@ const AllClientLedger = () => {
             </tbody>
           </table>
         </div>
-
         {/* ✅ MODAL */}
         {/* {showModal && selectedEntry && (
           <div className="modal-overlay">

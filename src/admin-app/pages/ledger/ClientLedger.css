@@ -5,15 +5,18 @@
   }
   
   .ledger-title {
-    text-align: center;
-    background-color: #6c757d;
+       text-align: center;
+    background-color: #fd5d0d;
     color: rgb(255, 255, 255);
-    padding: 10px;
+    padding: 8px;
     font-size: 22px;
   }
   
   .table-section {
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    background-color: rgb(5, 42, 81);
+    color:white
+
   }
   
   h3 {
@@ -37,7 +40,7 @@
   }
   
   .ledger-table th {
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
   }
   
   .agent {

@@ -385,14 +385,14 @@ setTotalBalance(total);
   //////////////////////////////////////////////////////
   return (
     <>
-      <p className="text-center bg-secondary tx-12 text-white p-1">
+      <p className="text-center tx-12 text-white p-1 ledger-title">
         Total Profit
       </p>
 
       <div className="container h-full w-100 mt-2 mb-20">
         {/* 🔽 FILTER */}
         <select
-          className="selectized"
+          className="serach-leger"
           value={optionuser}
           onChange={(e) => setOptionuser(e.target.value)}
         >

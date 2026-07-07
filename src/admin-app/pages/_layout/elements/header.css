@@ -27,6 +27,14 @@
     width: 30px !important;
     height: 30px !important;
     fill: #a4f827 !important;
+     color: #a4f827 !important;
+}
+
+.side-bar-icon-inside {
+    width: 15px !important;
+    height: 15px !important;
+    fill: #a4f827 !important;
+     color: #a4f827 !important;
 }
 .side-top-icon{
       background-color: #5a6268;
@@ -47,11 +55,14 @@
 }
 
 
+
 @media (max-width: 640px) {
   .mobile-style {
-    width: 78px;
+    width: 56px;
     text-align: center;
     text-wrap-mode: wrap;
+    font-size: 15px;
+        margin-left: 18px;
   }
 }
 

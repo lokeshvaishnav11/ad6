@@ -450,7 +450,7 @@ const MyLedger = () => {
   //////////////////////////////////////////////////////
   return (
     <>
-      <p className="text-center bg-secondary tx-12 text-white p-1">
+      <p className="text-center tx-12 text-white p-1 ledger-title ">
         My Ledger
       </p>
 

@@ -29,6 +29,8 @@ import { useWebsocket } from "../../../context/webSocket";
 import { setCurrentMatch } from "../../../redux/actions/sports/sportSlice";
 import MatchList2 from "../../../pages/dashboard/elements/adminmatch-list";
 // import memoOdds from "../../../pages/dashboard/elements/memoOdds";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBook, faFutbol, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const AdminDashboard = () => {
   const [marketdata, setmarketData] = React.useState([]);
@@ -236,8 +238,8 @@ const AdminDashboard = () => {
                       `${ItemMarket.marketId}_${ItemRunners.selectionId}`
                     ] != null
                       ? -userbook[
-                          `${ItemMarket.marketId}_${ItemRunners.selectionId}`
-                        ].toFixed(2)
+                        `${ItemMarket.marketId}_${ItemRunners.selectionId}`
+                      ].toFixed(2)
                       : ""}
                   </span>
                 </td>
@@ -347,7 +349,7 @@ const AdminDashboard = () => {
         "You can view your cricket card books from sport menu."
       )} */}
 
-      <div className="container-fluid"  style={{ paddingLeft: "2px" ,paddingRight:"2px"}}>
+      <div className="container-fluid" style={{ paddingLeft: "2px", paddingRight: "2px" }}>
         <div className="">
           <div className="col-md-12 main-container pad-ing">
             <div className="card-body">
@@ -411,12 +413,12 @@ const AdminDashboard = () => {
                         <CustomLink to={`/matka-books`} className="block">
                           <img
                             className="casino_img"
-                            src={"imgs/matka.png"}
+                            src={"https://admin.sixrun.co/assets/matka-DtyMEU3H.png"}
                             style={{
                               borderRadius: "10px",
                               // width: "150px",
                             }}
-                             
+
                           />
                           <span className="casino_img_text">Matka</span>
                         </CustomLink>
@@ -430,36 +432,18 @@ const AdminDashboard = () => {
                         < div className="block">
                           <img
                             className="casino_img"
-                            src={"imgs/ludo-9xpro.png"}
+                            src={"https://admin.sixrun.co/assets/aviator-ZjTbERS9.webp"}
                             style={{
                               borderRadius: "10px",
                               // width: "150px",
                             }}
                             onClick={handleClick}
                           />
-                          <span className="casino_img_text">Ludo</span>
+                          <span className="casino_img_text">coming soon</span>
                         </div>
                       </div>
                     </div>
-                    <div className="col-3 col-md-2 event-row p-0 float-left mt-3">
-                      <div
-                        style={{ border: "none" }}
-                        className="card-body m-0 p-0"
-                      >
-                        <div className="block">
-                          <img
-                            className="casino_img"
-                            src={"imgs/kabaddi-img.png"}
-                            style={{
-                              borderRadius: "10px",
-                              // width: "150px",
-                            }}
-                             onClick={handleClick}
-                          />
-                          <span className="casino_img_text">Kabbadi</span>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
 
@@ -486,17 +470,21 @@ const AdminDashboard = () => {
             <div className="row">
               <div className="col-6 mb-2 col-md-3 text-center">
                 <CustomLink
-                 to={`/list-clients/${userState?.user?.username}/${getRoleOptions()[0]?.key}`} 
+                  to={`/list-clients/${userState?.user?.username}/${getRoleOptions()[0]?.key}`}
                 >
                   <div className="wap w-100 text-center">
                     <span className="icon-circle">
-                      <AccountCircleIcon
+                      {/* <AccountCircleIcon
                         className="icon-large"
-                        style={{ fontSize: "80px" }}
-                      />
+                        
+                      /> */}
+                      <FontAwesomeIcon
+  icon={faUser}
+  style={{ fontSize: "60px",color:"white" }}
+/>
                     </span>
                     <p className="small mt-2">Agent Details </p>
-                    
+
                   </div>
                 </CustomLink>
               </div>
@@ -505,8 +493,10 @@ const AdminDashboard = () => {
                 <a href="admin/sports-details">
                   <div className="wap w-100">
                     <span className="icon-circle">
-                      <SportsSoccerIcon
-                        style={{ color: "#fff", fontSize: "80px" }}
+
+                      <FontAwesomeIcon
+                        icon={faFutbol}
+                        style={{ color: "#fff", fontSize: "60px" }}
                       />
                     </span>
 
@@ -519,9 +509,10 @@ const AdminDashboard = () => {
                 <a href="admin/ledger-home">
                   <div className="wap w-100">
                     <span className="icon-circle">
-                      <ReceiptLongIcon
+                      {/* <ReceiptLongIcon
                         style={{ color: "#fff", fontSize: "80px" }}
-                      />
+                      /> */}
+                      <FontAwesomeIcon icon={faBook}  style={{ color: "#fff", fontSize: "60px" }}/>
                     </span>
 
                     <p className="small mt-2">Ledger</p>
