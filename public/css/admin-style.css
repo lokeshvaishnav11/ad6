@@ -991,7 +991,7 @@ input+.slider span:last-child {
 .btco-hover-menu a,
 .navbar>li>a {
   text-transform: capitalize;
-  padding: 10px 2px;
+  padding: 14px 2px;
 }
 
 .btco-hover-menu .active a,
