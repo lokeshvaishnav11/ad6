@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { selectCasinoCurrentMatch } from '../../../redux/actions/casino/casinoSlice'
 import { useAppSelector } from '../../../redux/hooks'
 import CasinoResultDetail from '../CasinoResultDetail'
+import { Direction } from 'react-toastify/dist/utils'
 // ARimport { useState } from "react"
 
 const gameWiseResultStyle: any = {
@@ -482,6 +483,7 @@ const LastResults = (props: any) => {
         : clsscolor
 
     return (
+      <span style={{}}>
       <span
         key={key}
         onClick={() => {
@@ -489,8 +491,11 @@ const LastResults = (props: any) => {
         }}
         className={`${clsname} ${clsscolor}`}
       >
+    
         {getShortName({ shortName  ,rs})}
       </span>
+         
+          </span>
     )
   }
 
@@ -511,7 +516,7 @@ const LastResults = (props: any) => {
   return (
     <>
       <div className='card m-b-10 my-bet'>
-        <div className='card-header casino' style={{background:"#6c757d"}} >
+        <div className='card-header casino' >
           <h6 className='card-title d-inline-block'>
             {'Last Result'}
             <span

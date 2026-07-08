@@ -1544,6 +1544,16 @@ ul.mtree.transit li.mtree-open>a::after {
   /* Position the button relative to its container */
 }
 
+.x-live-tv{
+  width: 36.2%;
+    text-align: center;
+    color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: red;
+}
+
 /* Actions div/modal-like container */
 .actions-td {
   position: absolute;

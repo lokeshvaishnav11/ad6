@@ -285,126 +285,126 @@ const CasinoWrapper = (props: any) => {
       </span>
     );
   };
-  const renderUiData = (gamecode: any) => {
-    switch (gamecode) {
-      case "queen":
-        return (
-          <CasinoQueenLayout
-            lastOdds={updateOdds}
-            liveMatchData={liveMatchData}
-          />
-        );
-      case "lucky7B":
-      case "lucky7":
-        return (
-          <LuckSeven lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "dt20":
-      case "dt20b":
-        return (
-          <DragonTigerA lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "AAA":
-        return (
-          <AaaCasino lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "ddb":
-        return (
-          <BollywoodCasino
-            lastOdds={updateOdds}
-            liveMatchData={liveMatchData}
-          />
-        );
-      case "Tp1Day":
-        return (
-          <OneDayTeen lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "baccarat":
-      case "baccarat2":
-        return <Baccarat lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "poker6player":
-        return (
-          <Sixplayerpoker lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "Superover":
-      case "fivewicket":
-        return (
-          <SuperOver lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "card32":
-        return <Card32A lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "race2020":
-        return <Race20 lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "cricket2020":
-        return (
-          <TwentyCricket
-            checkRoundIdChange={checkRoundIdChange}
-            lastOdds={updateOdds}
-            liveMatchData={liveMatchData}
-          />
-        );
-      case "cmeter2020":
-        return <Cmeter20 lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "card32b":
-        return <Card32B lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "onedaypoker":
-        return (
-          <Onedaypoker lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "onedaypoker20":
-        return (
-          <Twentydaypoker lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "opentp":
-        return <OpenTeen lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "testtp":
-        return <TestTp lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "dragontiger1Day":
-        return (
-          <Dragontiger1Day
-            lastOdds={updateOdds}
-            liveMatchData={liveMatchData}
-          />
-        );
-      case "Cards3J":
-        return (
-          <Card3JLayout lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "dtl20":
-        return (
-          <Dtl20Layout lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "warcasino":
-        return (
-          <Casinowar lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "Andarbahar":
-        return (
-          <AndarBhar lastOdds={updateOdds} liveMatchData={casinoMatchData} />
-        );
-      case "Andarbahar2":
-        return (
-          <AndarBhar2 lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "teen20":
-        return (
-          <TeenPatti20 lastOdds={updateOdds} liveMatchData={liveMatchData} />
-        );
-      case "worlimatka":
-        return <Worli lastOdds={updateOdds} liveMatchData={liveMatchData} />;
-      case "worliinstant":
-        return (
-          <Instantworli
-            lastOdds={updateOdds}
-            liveMatchData={liveMatchData}
-            checkRoundIdChange={checkRoundIdChange}
-          />
-        );
+  // const renderUiData = (gamecode: any) => {
+  //   switch (gamecode) {
+  //     case "queen":
+  //       return (
+  //         <CasinoQueenLayout
+  //           lastOdds={updateOdds}
+  //           liveMatchData={liveMatchData}
+  //         />
+  //       );
+  //     case "lucky7B":
+  //     case "lucky7":
+  //       return (
+  //         <LuckSeven lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "dt20":
+  //     case "dt20b":
+  //       return (
+  //         <DragonTigerA lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "AAA":
+  //       return (
+  //         <AaaCasino lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "ddb":
+  //       return (
+  //         <BollywoodCasino
+  //           lastOdds={updateOdds}
+  //           liveMatchData={liveMatchData}
+  //         />
+  //       );
+  //     case "Tp1Day":
+  //       return (
+  //         <OneDayTeen lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "baccarat":
+  //     case "baccarat2":
+  //       return <Baccarat lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "poker6player":
+  //       return (
+  //         <Sixplayerpoker lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "Superover":
+  //     case "fivewicket":
+  //       return (
+  //         <SuperOver lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "card32":
+  //       return <Card32A lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "race2020":
+  //       return <Race20 lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "cricket2020":
+  //       return (
+  //         <TwentyCricket
+  //           checkRoundIdChange={checkRoundIdChange}
+  //           lastOdds={updateOdds}
+  //           liveMatchData={liveMatchData}
+  //         />
+  //       );
+  //     case "cmeter2020":
+  //       return <Cmeter20 lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "card32b":
+  //       return <Card32B lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "onedaypoker":
+  //       return (
+  //         <Onedaypoker lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "onedaypoker20":
+  //       return (
+  //         <Twentydaypoker lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "opentp":
+  //       return <OpenTeen lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "testtp":
+  //       return <TestTp lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "dragontiger1Day":
+  //       return (
+  //         <Dragontiger1Day
+  //           lastOdds={updateOdds}
+  //           liveMatchData={liveMatchData}
+  //         />
+  //       );
+  //     case "Cards3J":
+  //       return (
+  //         <Card3JLayout lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "dtl20":
+  //       return (
+  //         <Dtl20Layout lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "warcasino":
+  //       return (
+  //         <Casinowar lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "Andarbahar":
+  //       return (
+  //         <AndarBhar lastOdds={updateOdds} liveMatchData={casinoMatchData} />
+  //       );
+  //     case "Andarbahar2":
+  //       return (
+  //         <AndarBhar2 lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "teen20":
+  //       return (
+  //         <TeenPatti20 lastOdds={updateOdds} liveMatchData={liveMatchData} />
+  //       );
+  //     case "worlimatka":
+  //       return <Worli lastOdds={updateOdds} liveMatchData={liveMatchData} />;
+  //     case "worliinstant":
+  //       return (
+  //         <Instantworli
+  //           lastOdds={updateOdds}
+  //           liveMatchData={liveMatchData}
+  //           checkRoundIdChange={checkRoundIdChange}
+  //         />
+  //       );
 
-      default:
-        break;
-    }
-  };
+  //     default:
+  //       break;
+  //   }
+  // };
 
   //
   //     'Queen': "https://diamond.igtechgaming.com/freecasino/tvop?id=Queen",
@@ -539,6 +539,9 @@ const CasinoWrapper = (props: any) => {
                   <span className="float-right">
                     Round ID: {casinoMatchData?.match_id}
                   </span>
+                   <span className="float-left">
+                   X Live Tv
+                  </span>
                 </h6>
               </div>
               <div
@@ -603,7 +606,7 @@ const CasinoWrapper = (props: any) => {
                 {casinoMatchData?.id && (
                 <LastResults lastResult={casinoMatchData} gameId={gameCode} />
                 )}
-              {renderUiData(gameCode)}
+              {/* {renderUiData(gameCode)} */}
 
               {/* {(liveMatchData?.remark != "" &&
                 liveMatchData?.slug != "Superover" &&
@@ -668,7 +671,8 @@ const CasinoWrapper = (props: any) => {
           <div>
             <div>
               <div className="card m-b-10 my-bet">
-                <div className="card-header casino" style={{background:"#525252"}}>
+                <div className="d-flex flex-row">
+                <div className="card-header casino" >
                   {/* <h6 className="card-title d-inline-block">
                     {casinoMatchData?.title || ""}
                     {gameCode == "race2020" &&
@@ -676,7 +680,13 @@ const CasinoWrapper = (props: any) => {
                       race2020Mobile()}
                   </h6> */}
                   <span>Round ID: {casinoMatchData?.match_id}</span>
+                
                 </div>
+                    <div className="float-Right x-live-tv">
+                   X Live Tv
+                  </div>
+
+                  </div>
                 <div
                   className={`card-body ${gameCode}`}
                   style={{
@@ -742,7 +752,7 @@ const CasinoWrapper = (props: any) => {
                 style={{ padding: "0px", position: "relative" }}
               >
                 <LastResults lastResult={casinoMatchData} gameId={gameCode} />
-                {renderUiData(gameCode)}
+                {/* {renderUiData(gameCode)} */}
                 {/* {(liveMatchData?.remark != "" && gameCode != "Cards3J") ||
                 (liveMatchData?.event_data?.remark != "" &&
                   gameCode != "Cards3J") ? (
@@ -772,17 +782,24 @@ const CasinoWrapper = (props: any) => {
                   className="card-header"
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <h6 className="card-title d-inline-block">My Bet</h6>
-                  <CustomLink
-                    to={"/completed-casino"}
-                    className="card-title d-inline-block btn-danger p-1 rounded"
-                  >
-                    Result
-                  </CustomLink>
+                  <h6 className="card-title d-inline-block">Display Match Bet</h6>
+                 
                 </div>
-                <div className="card-body">
+                {/* <div className="card-body">
                   <MyBetComponent />
+                </div> */}
+              </div>
+               <div className="card m-b-10 my-bet">
+                <div
+                  className="card-header"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <h6 className="card-title d-inline-block">Display Match plus</h6>
+                  
                 </div>
+                {/* <div className="card-body">
+                  <MyBetComponent />
+                </div> */}
               </div>
             </div>
           
