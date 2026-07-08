@@ -19,7 +19,7 @@
   }
   
   .submit-btn {
-    background-color: teal;
+    background-color:rgb(5, 42, 81);
     color: white;
     border: none;
     padding: 8px 15px;
@@ -48,7 +48,8 @@
   }
   
   .commission-table th {
-    background-color: #f4f4f4;
+   background-color:rgb(5, 42, 81);
+   color:white
   }
   
   .negative {

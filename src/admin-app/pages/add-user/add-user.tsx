@@ -678,7 +678,7 @@ const AddUser = () => {
                           </div>
 
                           <div style={{ display: "grid" }}>
-                            <label>Agent</label>
+                            <label>Owner</label>
                             {filterred?.length > 0 ? (
                               <select
                                 onChange={handleSelectChange}
@@ -697,7 +697,8 @@ const AddUser = () => {
                           </div>
 
                           <div>
-                            <label htmlFor="">Agent Limit</label>
+                            <label htmlFor="">
+                     Owner Limit</label>
                             <input
                               type="text"
                               className="form-control username"
@@ -936,7 +937,7 @@ const AddUser = () => {
                       <div className="col-md-6">
                         <div className="form-group">
                           <label htmlFor="sendamount">
-                            Client Limit ({maxBalance ? maxBalance : ""})
+                            Limit / Coins 
                           </label>
                           <input
                             className="form-control"

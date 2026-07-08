@@ -231,8 +231,8 @@ const Login = () => {
           width: 100% !important;
           border: 1px solid #dcdfe3 !important;
           border-radius: 8px !important;
-          padding: 14px 16px !important;
-          font-size: 16px !important;
+          padding: 6px 16px !important;
+          font-size: 15 spx !important;
           color: #333 !important;
           outline: none !important;
           box-sizing: border-box !important;
@@ -256,13 +256,12 @@ const Login = () => {
         }
         .${P}-login-btn {
           width: 100% !important;
-          background: #e6193f !important;
+          background: #c82333 !important;
           color: #fff !important;
           border: none !important;
           border-radius: 8px !important;
-          padding: 15px 0 !important;
+          padding: 10px 0 !important;
           font-size: 18px !important;
-          font-weight: 700 !important;
           cursor: pointer !important;
           margin-top: 6px !important;
         }

@@ -333,7 +333,7 @@ const Header = () => {
           </div>
 
           <div
-            style={{ marginLeft: "0rem" }}
+            style={{ marginLeft: "1.5rem" }}
             className={`side-menu-buttonn  ${
               !isOpen2 ? "hidden" : "block"
             } font-bold text-white md:hidden side-top-icon`}
@@ -703,7 +703,7 @@ const Header = () => {
                         aria-labelledby="navbarDropdownMenuLink"
                         style={{ background: "#052a51" }}
                       >
-                        <li className="border-b-4 border-black pb-2">
+                        <li className="border-b pb-2">
                           <a
                             //  onClick={() => setDropdownOpen3(!dropdownOpen3)}
                             onClick={() => {
@@ -711,7 +711,7 @@ const Header = () => {
                               setActiveMenu("My");
                             }}
                             href="/admin/my-ledger"
-                            className={`dropdown-item border-b-4 border-black ${
+                            className={`dropdown-item border-b ${
                               activeMenu === "My" ? "bg-active" : ""
                             } text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-row items-center`}
                           >
@@ -722,7 +722,7 @@ const Header = () => {
                           </a>
                         </li>
 
-                        <li className="border-b-4 border-black pb-2">
+                        <li className="border-b  pb-2">
                           <a
                             href="/admin/all-settlement"
                             // onClick={() => setDropdownOpen3(!dropdownOpen3)}
@@ -730,7 +730,7 @@ const Header = () => {
                               toggleDrawer();
                               setActiveMenu("All");
                             }}
-                            className={`dropdown-item border-b-4 border-black border-white/30 ${
+                            className={`dropdown-item border-b  border-white/30 ${
                               activeMenu === "All" ? "bg-active" : ""
                             } text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-row items-center`}
                           >
@@ -745,7 +745,7 @@ const Header = () => {
                           </a>
                         </li>
 
-                        <li className="border-b-4 border-black pb-2">
+                        <li className="border-b  pb-2">
                           <a
                             href="/admin/total-profit"
                             // onClick={() => setDropdownOpen3(!dropdownOpen3)}
@@ -753,7 +753,7 @@ const Header = () => {
                               toggleDrawer();
                               setActiveMenu("Total");
                             }}
-                            className={`dropdown-item  border-b-4 border-black border-white/30 ${
+                            className={`dropdown-item  border-b border-white/30 ${
                               activeMenu === "Total" ? "bg-active" : ""
                             } text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-row items-center`}
                           >
@@ -786,7 +786,7 @@ const Header = () => {
                           </a>
                         </li>
 
-                        {true ? (
+                        {userState.user.role == RoleType.dl ? (
                           <>
                           <li className="border-b-4 border-black pb-2">
                             <a

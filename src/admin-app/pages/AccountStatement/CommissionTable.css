@@ -30,7 +30,8 @@
   }
   
   .commission-table th {
-    background-color: #f4f4f4;
+    background-color:rgb(5, 42, 81);
+     color:white
   }
   
   .reset-btn {
@@ -46,7 +47,7 @@
   }
 
   .bg-full {
-    background-color: var(--theme1-bg);
+    background-color: rgb(5, 42, 81);
     text-align: center;
     padding: 15px;
     color: white;
