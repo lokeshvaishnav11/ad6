@@ -549,13 +549,13 @@ const ClientLedger = () => {
   //////////////////////////////////////////////////////
   return (
     <>
-      <p className="text-center bg-secondary tx-12 text-white p-1">
+      <p className="text-center tx-12 text-white p-1 ledger-title ">
         Client Ledger
       </p>
 
       {/* 🔽 FILTER */}
       <select
-        className="mx-2"
+        className="serach-leger"
         value={optionuser}
         onChange={(e) => setOptionuser(e.target.value)}
       >

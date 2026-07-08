@@ -230,8 +230,8 @@ const Login = () => {
         .${P}-input {
           width: 100% !important;
           border: 1px solid #dcdfe3 !important;
-          border-radius: 8px !important;
-          padding: 6px 16px !important;
+          border-radius: 3px !important;
+          padding: 12px 16px !important;
           font-size: 15 spx !important;
           color: #333 !important;
           outline: none !important;
