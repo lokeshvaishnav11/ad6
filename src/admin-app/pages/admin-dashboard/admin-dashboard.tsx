@@ -483,7 +483,7 @@ const AdminDashboard = () => {
   style={{ fontSize: "60px",color:"white" }}
 />
                     </span>
-                    <p className="small mt-2">Agent Details </p>
+                    <p className="mt-2" style={{color: "#999"}}>Agent Details </p>
 
                   </div>
                 </CustomLink>
@@ -500,7 +500,7 @@ const AdminDashboard = () => {
                       />
                     </span>
 
-                    <p className="small mt-2">Sport's Betting</p>
+                    <p className="mt-2" style={{color: "#999"}}>Sport's Betting</p>
                   </div>
                 </a>
               </div>
@@ -515,7 +515,7 @@ const AdminDashboard = () => {
                       <FontAwesomeIcon icon={faBook}  style={{ color: "#fff", fontSize: "60px" }}/>
                     </span>
 
-                    <p className="small mt-2">Ledger</p>
+                    <p className=" mt-2" style={{color: "#999"}}>Ledger</p>
                   </div>
                 </a>
               </div>
@@ -529,7 +529,7 @@ const AdminDashboard = () => {
                       />
                     </span>
 
-                    <p className="small mt-2">All Client Report</p>
+                    <p className="mt-2" style={{color: "#999"}}>All Client Report</p>
                   </div>
                 </CustomLink>
               </div>
@@ -549,7 +549,7 @@ const AdminDashboard = () => {
               <div className="col-md-4 mb-2">
                 <div className="card ">
                   <div className="card-header h6 ng-binding">
-                    My Share ({shared}% )
+                    Share ({shared}% )
                   </div>
                 </div>
               </div>
@@ -557,7 +557,7 @@ const AdminDashboard = () => {
                 <div className="card ">
                   <div className="card-header h6 ng-binding">
                     {/* Match/Sess Comm ( {userState?.user?.partnership[1]?.ownRatio}% / 4% ) */}
-                    Match/Sess/Matka Comm ( {detail?.mcom ?? 0}% / {detail?.scom ?? 0}% / {detail?.matcom}%
+                   comm (M {detail?.mcom ?? 0}% /Sess {detail?.scom ?? 0}%/Casino {detail?.mcom ?? 0}% / Matka{detail?.matcom}%
                     )
                   </div>
                 </div>

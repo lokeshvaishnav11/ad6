@@ -38,7 +38,7 @@ const MatchList2: React.FC<MatchListProps> = ({
                     style={{ color: "#000", textDecoration: "none" }}
                     onClick={() => currentMatch(match)}
                   >
-                    <div className="card w-100" style={{ cursor: "pointer" }}>
+                    <div className="card w-100" style={{ cursor: "pointer" ,border:"1px solid black" }}>
                       <div
                         className="card-headerf font-weight-bolder text-center bg-wcarning p-1 h6"
                         style={{ backgroundColor: "#052a51", color: "white" }}
