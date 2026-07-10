@@ -405,6 +405,83 @@ const AdminDashboard = () => {
                           );
                         })}
 
+                          <div className="col-3 col-md-2 event-row p-0 float-left mt-3">
+                      <div
+                        style={{ border: "none" }}
+                        className="card-body m-0 p-0"
+                      >
+                        <CustomLink to={`#`} className="block">
+                          <img
+                            className="casino_img"
+                            src={"https://admin.sixrun.co/assets/lucky7eu-newx-B9GoLH0h.jpg"}
+                            style={{
+                              borderRadius: "10px",
+                              // width: "150px",
+                            }}
+
+                          />
+                          <span className="casino_img_text">lucky 7B</span>
+                        </CustomLink>
+                      </div>
+                    </div>
+                      <div className="col-3 col-md-2 event-row p-0 float-left mt-3">
+                      <div
+                        style={{ border: "none" }}
+                        className="card-body m-0 p-0"
+                      >
+                        <CustomLink to={`#`} className="block">
+                          <img
+                            className="casino_img"
+                            src={"https://admin.sixrun.co/assets/worli2-BPONq1QW.jpg"}
+                            style={{
+                              borderRadius: "10px",
+                              // width: "150px",
+                            }}
+
+                          />
+                          <span className="casino_img_text">Worli Matka</span>
+                        </CustomLink>
+                      </div>
+                    </div>
+                      <div className="col-3 col-md-2 event-row p-0 float-left mt-3">
+                      <div
+                        style={{ border: "none" }}
+                        className="card-body m-0 p-0"
+                      >
+                        <CustomLink to={`#`} className="block">
+                          <img
+                            className="casino_img"
+                            src={"https://admin.sixrun.co/assets/3cardj-Bvqcv6Vr.jpg"}
+                            style={{
+                              borderRadius: "10px",
+                              // width: "150px",
+                            }}
+
+                          />
+                          <span className="casino_img_text">3 Cards Judgement</span>
+                        </CustomLink>
+                      </div>
+                    </div>
+                      <div className="col-3 col-md-2 event-row p-0 float-left mt-3">
+                      <div
+                        style={{ border: "none" }}
+                        className="card-body m-0 p-0"
+                      >
+                        <CustomLink to={`#`} className="block">
+                          <img
+                            className="casino_img"
+                            src={"https://admin.sixrun.co/assets/ab2-new-Byb1aHfb.jpg"}
+                            style={{
+                              borderRadius: "10px",
+                              // width: "150px",
+                            }}
+
+                          />
+                          <span className="casino_img_text">Andar Bahar</span>
+                        </CustomLink>
+                      </div>
+                    </div>
+
                     <div className="col-3 col-md-2 event-row p-0 float-left mt-3">
                       <div
                         style={{ border: "none" }}
