@@ -557,7 +557,7 @@ const AdminDashboard = () => {
                       /> */}
                       <FontAwesomeIcon
   icon={faUser}
-  style={{ fontSize: "60px",color:"white" }}
+  style={{ fontSize: "75px",color:"white" }}
 />
                     </span>
                     <p className="mt-2" style={{color: "#999"}}>Agent Details </p>
@@ -573,7 +573,7 @@ const AdminDashboard = () => {
 
                       <FontAwesomeIcon
                         icon={faFutbol}
-                        style={{ color: "#fff", fontSize: "60px" }}
+                        style={{ color: "#fff", fontSize: "75px" }}
                       />
                     </span>
 
@@ -589,7 +589,7 @@ const AdminDashboard = () => {
                       {/* <ReceiptLongIcon
                         style={{ color: "#fff", fontSize: "80px" }}
                       /> */}
-                      <FontAwesomeIcon icon={faBook}  style={{ color: "#fff", fontSize: "60px" }}/>
+                      <FontAwesomeIcon icon={faBook}  style={{ color: "#fff", fontSize: "75px" }}/>
                     </span>
 
                     <p className=" mt-2" style={{color: "#999"}}>Ledger</p>
@@ -634,7 +634,7 @@ const AdminDashboard = () => {
                 <div className="card ">
                   <div className="card-header h6 ng-binding">
                     {/* Match/Sess Comm ( {userState?.user?.partnership[1]?.ownRatio}% / 4% ) */}
-                   comm (M {detail?.mcom ?? 0}% /Sess {detail?.scom ?? 0}%/Casino {detail?.mcom ?? 0}% / Matka{detail?.matcom}%
+                   comm (M {detail?.mcom ?? 0} /S {detail?.scom ?? 0} /Casino {detail?.mcom ?? 0} / Matka{detail?.matcom}
                     )
                   </div>
                 </div>
