@@ -320,7 +320,7 @@ const Header = () => {
     <>
       <header className="">
         <div
-          className="flex newmargin  justify-between md:justify-end p-2  bg-gray-header"
+          className="flex newmargin  justify-between md:justify-end p-2  bg-gray-header items-center"
           style={{ backgroundColor: "#052a51", color: "black" }}
         >
           <div
@@ -333,7 +333,7 @@ const Header = () => {
           </div>
 
           <div
-            style={{ marginLeft: "1.5rem" }}
+            style={{ marginLeft: "2.5rem" }}
             className={`side-menu-buttonn  ${
               !isOpen2 ? "hidden" : "block"
             } font-bold text-white md:hidden side-top-icon`}
@@ -344,7 +344,7 @@ const Header = () => {
             <div className="bar3" />
           </div>
 
-          <div style ={{width:"75px"}}><img src="https://sixrun.co/assets/sixrun-DFFs84w_.png"/></div>
+          <div style ={{width:"137px"}}><img src="https://sixrun.co/assets/sixrun-DFFs84w_.png"/></div>
 
           <div className="">
             <ul className="user-searchh flex gap-2  list-unstyled ">
@@ -1097,7 +1097,7 @@ const Header = () => {
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                                     <ListIcon className="text-warning side-bar-icon" />
-                                    serach
+                                    search
                                   </b>
                                 </CustomLink>
                               </li>
