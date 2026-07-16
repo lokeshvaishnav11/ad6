@@ -60,7 +60,12 @@
   .bg-final2{
     background-color: #dc3545;
   }
-  
+   .bg-final3{
+    background-color:rgb(20, 20, 245);
+  }
+   .td-color{
+    color:green
+  }
   .settlement-btn {
     background-color: #ffc107;
     color: black;

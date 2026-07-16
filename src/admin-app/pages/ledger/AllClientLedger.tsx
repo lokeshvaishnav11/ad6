@@ -981,10 +981,10 @@ const AllClientLedger = () => {
                 </tr>
               ))}
 
-              <tr className="font-weight-bold bg-light">
-                <td>LENA HAI</td>
-                <td>{lenaTotals.amount.toFixed(2)}</td>
-                <td>{lenaTotals.settled.toFixed(2)}</td>
+              <tr className=" bg-light">
+                <td style ={{color:"blue"}}>LENA HAI</td>
+                <td className="td-color">{lenaTotals.amount.toFixed(2)}</td>
+                <td className="td-color">{lenaTotals.settled.toFixed(2)}</td>
                 <td className="bg-final text-white">
                   {lenaTotals.final.toFixed(2)}
                 </td>
@@ -1015,8 +1015,8 @@ const AllClientLedger = () => {
                       {row.agent}
                     </CustomLink>
                   </td>
-                  <td>{row.amount.toFixed(2)}</td>
-                  <td>{row.settled.toFixed(2)}</td>
+                  <td className="td-color">{row.amount.toFixed(2)}</td>
+                  <td className="td-color">{row.settled.toFixed(2)}</td>
                   <td className="bg-final2 text-white">
                     {row.final.toFixed(2)}
                   </td>
@@ -1034,7 +1034,7 @@ const AllClientLedger = () => {
                       <PaymentsIcon /> Settlement
                     </button>
                      <button
-                      className="btn btn-warning btn-sm"
+                      className="btn btn-sm"
                      
                     >
                        Details
@@ -1043,10 +1043,10 @@ const AllClientLedger = () => {
                 </tr>
               ))}
 
-              <tr className="font-weight-bold bg-light">
-                <td>DENA HAI</td>
-                <td>{denaTotals.amount.toFixed(2)}</td>
-                <td>{denaTotals.settled.toFixed(2)}</td>
+              <tr className=" bg-light">
+                <td style ={{color:"blue"}}>DENA HAI</td>
+                <td >{denaTotals.amount.toFixed(2)}</td>
+                <td >{denaTotals.settled.toFixed(2)}</td>
                 <td className="bg-final2 text-white">
                   {denaTotals.final.toFixed(2)}
                 </td>
@@ -1066,7 +1066,7 @@ const AllClientLedger = () => {
                 <th>AGENT</th>
                 <th>AMOUNT</th>
                 <th>SETTLED</th>
-                <th className="bg-final2 text-white">FINAL</th>
+                <th className="bg-final3 text-white">FINAL</th>
                 <th>ACTION</th>
               </tr>
             </thead>
@@ -1079,9 +1079,9 @@ const AllClientLedger = () => {
                       {row.agent}
                     </CustomLink>
                   </td>
-                  <td>{row.amount.toFixed(2)}</td>
-                  <td>{row.settled.toFixed(2)}</td>
-                  <td className="bg-final2 text-white">
+                  <td className="td-color">{row.amount.toFixed(2)}</td>
+                  <td className="td-color">{row.settled.toFixed(2)}</td>
+                  <td className="bg-final3 text-white">
                     {row.final.toFixed(2)}
                   </td>
                   <td>
@@ -1101,11 +1101,11 @@ const AllClientLedger = () => {
                 </tr>
               ))}
 
-              <tr className="font-weight-bold bg-light">
-                <td>DENA HAI</td>
+              <tr className=" bg-light">
+                <td style ={{color:"blue"}}>CLEAR HAI</td>
                 <td>{denaTotals.amount.toFixed(2)}</td>
                 <td>{denaTotals.settled.toFixed(2)}</td>
-                <td className="bg-final2 text-white">
+                <td className="bg-final3 text-white">
                   {denaTotals.final.toFixed(2)}
                 </td>
               </tr>

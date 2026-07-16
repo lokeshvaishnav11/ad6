@@ -674,6 +674,7 @@ const AddUser = () => {
                               type="text"
                               className="form-control username"
                               value={sendcode}
+                                                            style={{background:"#e9ecef" ,    padding: "8px"}}
                             />
                           </div>
 
@@ -683,6 +684,8 @@ const AddUser = () => {
                               <select
                                 onChange={handleSelectChange}
                                 className="border rounded-0 p-2"
+                                                            style={{background:"#e9ecef" ,    padding: "8px"}}
+
                               >
                                 <option value="">-- Select User --</option>
                                 {filterred?.map((user: any) => (
@@ -703,6 +706,8 @@ const AddUser = () => {
                               type="text"
                               className="form-control username"
                               value={maxBalance}
+                                                            style={{background:"#e9ecef" ,    padding: "8px"}}
+
                             />
                           </div>
 
@@ -715,6 +720,8 @@ const AddUser = () => {
                               defaultValue={""}
                               type="text"
                               className="form-control"
+                                                                                          style={{    padding: "8px"}}
+
                             // required
                             />
                             <span
@@ -745,14 +752,18 @@ const AddUser = () => {
                             className="form-control"
                             // required
                           /> */}
+                          <span className="small text-danger" style={{position: "absolute",top: "78px", right: "15px", fontSize: "8px"}}>Min 6 char (numbers 0-9, letters A-Z)</span>
                           <input
                             placeholder="Password"
                             id="password"
                             type="text"      // admin ko dikhana hai
                             {...register("password")}
                             className="form-control"
+                                                                                                                      style={{    padding: "8px"}}
+
                             // readOnly
                           />
+                          <meter max="4" value={3}></meter>
 
 
                           {errors?.password && (
@@ -902,6 +913,8 @@ const AddUser = () => {
                             min="0"
                             // required
                             type="number"
+                                                                                                                      style={{    padding: "8px"}}
+
                           />
                           {errors?.creditRefrences && (
                             <span id="creditrefrence-error" className="error">
@@ -929,6 +942,8 @@ const AddUser = () => {
                               max={pshared ? pshared : 0}
                               // required
                               type="number"
+                                                                                                                        style={{    padding: "8px"}}
+
                             />
                           </div>
                         </div>
@@ -948,13 +963,15 @@ const AddUser = () => {
                             min="0"
                             // required
                             type="number"
+                                                                                                                      style={{    padding: "8px"}}
+
                           />
                         </div>
                       </div>
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label htmlFor="mcom">Match Commision(≤2%)</label>
+                          <label htmlFor="mcom">Match Commision</label>
                           <input
                             className="form-control"
                             placeholder="M Comm Limit"
@@ -966,13 +983,15 @@ const AddUser = () => {
                             // required
                             step="0.01"
                             type="number"
+                                                                                                                      style={{    padding: "8px"}}
+
                           />
                         </div>
                       </div>
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label htmlFor="matcom">Matka Commision(≤10%)</label>
+                          <label htmlFor="matcom">Matka Commision</label>
                           <input
                             className="form-control"
                             placeholder="M Comm Limit"
@@ -984,6 +1003,8 @@ const AddUser = () => {
                             // required
                             step="0.01"
                             type="number"
+                                                                                                                      style={{    padding: "8px"}}
+
                           />
 
                         </div>
@@ -991,7 +1012,7 @@ const AddUser = () => {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label htmlFor="scom">Session Commision(≤4%)</label>
+                          <label htmlFor="scom">Session Commision</label>
                           <input
                             className="form-control"
                             placeholder="S Comm Limit"
@@ -1003,6 +1024,8 @@ const AddUser = () => {
                             step="0.01"
                             // required
                             type="number"
+                                                                                                                      style={{    padding: "8px"}}
+
                           />
                         </div>
                       </div>

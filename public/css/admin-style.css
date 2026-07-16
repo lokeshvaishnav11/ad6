@@ -1838,8 +1838,8 @@ ul.mtree.transit li.mtree-open>a::after {
   background-color: var(--theme2-bg70);
   color: var(--secondary-color);
   line-height: 1.6;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .card-title {

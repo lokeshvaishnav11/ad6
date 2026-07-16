@@ -23,6 +23,7 @@ import MatkaDetail from './pages/SportsDetail/MatkaDetail'
 import MatkaPlayAdmin from './pages/SportsDetail/MatkaPlayAdmin'
 import SessionBets from './pages/SportsDetail/RejectedBets'
 import NewRejectedBetsFinal from './pages/SportsDetail/NewRejectedBetsFinal'
+import ListClientsdea from './pages/list-clients/list-clients-dea'
 
 
 const ActiveMarkets = React.lazy(() => import('../admin-app/pages/active-matches/active-markets'))
@@ -108,6 +109,11 @@ const AdminRoutes = () => {
               key: 'list-client',
               path: path,
               element: <ListClients />,
+            })),
+             ...['list-clients-dea/:username', 'list-clients-dea/:username/:type'].map((path) => ({
+              key: 'list-client-dea',
+              path: path,
+              element: <ListClientsdea/>,
             })),
             ...['add-user', 'add-user/:username','add-user/:username/:type','add-user/:type'].map((path) => ({
               key: 'add-user',

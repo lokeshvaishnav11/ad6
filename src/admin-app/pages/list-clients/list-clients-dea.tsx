@@ -58,7 +58,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faUsers, faUnlock } from "@fortawesome/free-solid-svg-icons";
 import { left } from "@popperjs/core";
 
-const ListClients = () => {
+const ListClientsdea = () => {
   const ref: any = React.createRef();
   const userState = useAppSelector(selectUserData);
   const loading = useAppSelector(selectLoader);
@@ -269,7 +269,7 @@ const ListClients = () => {
 
     setUserList([] as any);
 
-    userService.getUserList(obj).then((res: AxiosResponse<any>) => {
+    userService.getUserListDea(obj).then((res: AxiosResponse<any>) => {
       setSearchObj(obj); // store latest filters including type
       setUserList(res.data.data);
       clientlistdata(res.data.data.items);
@@ -2104,4 +2104,4 @@ const ListClients = () => {
     </>
   );
 };
-export default ListClients;
+export default ListClientsdea;

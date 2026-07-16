@@ -21,7 +21,7 @@ const LedgerHome = () => {
                       style={{ fontSize: "80px" }}
                     />
                   </span>
-                  <p className="small mt-2">My Ledger </p>
+                  <p className=" mt-2"  style={{color:"#999",fontSize:"13px"}}>My Ledger </p>
                 </div>
               </a>
             </div>
@@ -35,7 +35,7 @@ const LedgerHome = () => {
                     />
                   </span>
 
-                  <p className="small mt-2">All Client Ledger</p>
+                  <p className=" mt-2"  style={{color:"#999",fontSize:"13px"}}>All Client Ledger</p>
                 </div>
               </a>
             </div>
@@ -49,7 +49,7 @@ const LedgerHome = () => {
                     />
                   </span>
 
-                  <p className="small mt-2">Total Profit</p>
+                  <p className=" mt-2"  style={{color:"#999",fontSize:"13px"}}>Total Profit</p>
                 </div>
               </a>
             </div>
@@ -63,7 +63,7 @@ const LedgerHome = () => {
                     />
                   </span>
 
-                  <p className="small mt-2">Client Ledger</p>
+                  <p className=" mt-2" style={{color:"#999",fontSize:"13px"}}>Client Ledger</p>
                 </div>
               </a>
             </div>

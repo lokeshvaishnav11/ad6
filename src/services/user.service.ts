@@ -16,6 +16,23 @@ class UserService {
     return api.get(`/get-user-list?status=${getStatus}&page=${page}`)
   }
 
+
+    getUserListDea({ username, type, search, status, page }: any) {
+    // const getStatus = status ? status : ''
+    if (username)
+      return api.get(
+        `/get-user-list/?username=${username}&search=${search}&type=${type}&status=false&page=${page}`,
+      )
+
+    if (search && type)
+      return api.get(
+        `/get-user-list/?search=${search}&type=${type}&status=false&page=${page}`,
+      )
+
+    return api.get(`/get-user-list-dea?status=false&page=${page}`)
+  }
+
+
   getUserList2({ username, type, search, status, page }: any) {
     const getStatus = status ? status : ''
     if (username)
