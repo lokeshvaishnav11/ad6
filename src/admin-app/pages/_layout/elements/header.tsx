@@ -533,7 +533,7 @@ const Header = () => {
                     </CustomLink>
                   </li>
 
-                  <li
+                  {/* <li
                     className={`nav-item border-b md:w-60 w-fit ${
                       activeMenu === "Cass" ? "bg-active" : ""
                     } `}
@@ -552,7 +552,7 @@ const Header = () => {
                         Casino P/L
                       </b>
                     </CustomLink>
-                  </li>
+                  </li> */}
 
                   <li
                     className={`nav-item border-b md:w-60 w-fit ${
@@ -976,7 +976,7 @@ const Header = () => {
                                 >
                                   <b className="text-white mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                     <TuneIcon className="text-warning side-bar-icon" />
-                                    Add Match List
+                                    Mange Match
                                   </b>
                                 </CustomLink>
                               </li>
@@ -995,7 +995,7 @@ const Header = () => {
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                     <TuneIcon className="text-warning side-bar-icon" />
-                                    Casino List
+                                    Mange Casino 
                                   </b>
                                 </CustomLink>
                               </li>
@@ -1015,7 +1015,7 @@ const Header = () => {
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                     <TuneIcon className="text-warning side-bar-icon" />
-                                    {"Block Markets"}
+                                    {"Mange Markets"}
                                   </b>
                                 </CustomLink>
                               </li>
@@ -1037,7 +1037,7 @@ const Header = () => {
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col gap-1 items-center">
                                     <TuneIcon className="text-warning side-bar-icon"  />
-                                    {"Matka Rollback Results"}
+                                    {"Matka Results Dec"}
                                   </b>
                                 </CustomLink>
                               </li>
@@ -1056,7 +1056,7 @@ const Header = () => {
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                                     <DeleteIcon className="text-warning side-bar-icon" />
-                                    Deleted Bets
+                                    Current Bets
                                   </b>
                                 </CustomLink>
                               </li>
@@ -1069,7 +1069,7 @@ const Header = () => {
                                 >
                                   <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
                                     <ListIcon className="text-warning side-bar-icon" />
-                                    Deleted Bets History
+                                    Deleted Bets 
                                   </b>
                                 </CustomLink>
                               </li>

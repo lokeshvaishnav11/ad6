@@ -5,14 +5,11 @@ import { AxiosResponse } from "axios";
 import { useParams } from "react-router-dom";
 import IMatch from "../../../models/IMatch";
 import { toast } from "react-toastify";
-import moment from "moment";
-import { dateFormat } from "../../../utils/helper";
 
 const MatchesPage = () => {
   const [matches, setMatches] = React.useState<IMatch[]>([]);
 
   const { sportId, competitionId } = useParams();
-  //console.log(sportId)
 
   const autoSelectAllMatches = () => {
     const updatedMatches = matches.map((match) => ({
@@ -22,60 +19,18 @@ const MatchesPage = () => {
     setMatches(updatedMatches);
   };
 
-  // React.useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     autoSelectAllMatches()
-  //     const selectedMatches = matches.filter((m) => m.active)
-  //     if (selectedMatches.length > 0) {
-  //       seriesService.saveMatch(selectedMatches)
-  //         .then(() => {
-  //           toast.success('Match auto-saved')
-  //         })
-  //         .catch((e) => {
-  //           toast.error(e.response?.data?.message || e.message)
-  //         })
-  //     }
-  //   }, 10 * 60 * 1000) // 10 minutes
-
-  //   return () => clearInterval(interval) // Clean up
-  // }, [matches])
-
   React.useEffect(() => {
     if (sportId) {
       seriesService
         .getSeriesWithMarket(sportId!)
         .then((res: AxiosResponse<any>) => {
           const matchesList = res.data.data;
-          //console.log("hello world",matchesList)
-          // //console.log(matchsList,"matchList")
-          // .map((match: any): IMatch => {
-          //   return {
-          //     matchId: match.event.id,
-          //     matchDateTime: match.event.openDate,
-          //     name: match.event.name,
-          //     seriesId: match?.series?.id,
-          //     sportId,
-          //     active: match.checked ? true : false,
-          //   }
-          // })
 
           const sortedMatches = [...matchesList].sort((a, b) => {
-            // Convert matchDateTime strings to Date objects for comparison
             const dateA: any = new Date(a.matchDateTime);
             const dateB: any = new Date(b.matchDateTime);
-
-            // Compare the dates
             return dateA - dateB;
           });
-
-          // const uniqueEvents = sortedMatches.filter(
-          //   (event, index, self) =>
-          //     index ===
-          //     self.findIndex(
-          //       (e) => e.matchId === event.matchId 
-          //     )
-          //   // index === self.findIndex((e) => e.matchId === event.matchId)
-          // );
 
           const uniqueEvents = Array.from(
             new Map(
@@ -91,17 +46,17 @@ const MatchesPage = () => {
           const filteredEvents = Array.from(
             new Map(
               uniqueEvents
-                .filter((event) => {
+                .filter((event: any) => {
                   const matchDate = new Date(event.matchDateTime);
                   return matchDate >= now && matchDate <= threeDaysLater;
                 })
-                .map((event) => [event.matchId, event]) // Map unique matchId
+                .map((event: any) => [event.matchId, event])
             ).values()
           );
+
           setMatches(uniqueEvents);
         })
         .catch((e) => {
-          const err = e as Error;
           toast.error(e.message);
         });
     }
@@ -109,7 +64,9 @@ const MatchesPage = () => {
 
   const handleMatch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const selectdMatches = matches.filter((ele) => ele.active);
+
     seriesService
       .saveMatch(selectdMatches)
       .then(() => {
@@ -121,19 +78,20 @@ const MatchesPage = () => {
       });
   };
 
-  const selectMatch = (e: ChangeEvent<HTMLInputElement>, indx: number) => {
+  const selectMatch = (
+    e: ChangeEvent<HTMLInputElement>,
+    indx: number
+  ) => {
     const items: any = [...matches];
-    //console.log('items[indx]', JSON.stringify(items[indx]))
     items[indx].active = e.target.checked ? true : false;
     setMatches(items);
   };
 
-  //console.log(matches, 'matches')
   function convertUTCtoIST(utcString: any) {
     const date = new Date(utcString);
 
     const options: any = {
-      timeZone: "Asia/Kolkata", // force IST
+      timeZone: "Asia/Kolkata",
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -145,56 +103,199 @@ const MatchesPage = () => {
     return date.toLocaleString("en-IN", options);
   }
 
+  const selectedCount = matches.filter((match) => match.active).length;
+
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-12 main-container">
-          <form onSubmit={handleMatch}>
-            <div className="text-right">
-              <button className="btn btn-primary mb-10" type="submit">
+    <div className="matches-page">
+      <div className="matches-shell">
+        <div className="matches-header">
+          <div>
+            <span className="matches-eyebrow">Match Management</span>
+            <h2>Available Matches</h2>
+            <p>
+              Select the matches you want to activate and save them.
+            </p>
+          </div>
+
+          <div className="matches-header-stats">
+            <div className="match-stat-card">
+              <span>Total Matches</span>
+              <strong>{matches.length}</strong>
+            </div>
+
+            <div className="match-stat-card active-stat">
+              <span>Selected</span>
+              <strong>{selectedCount}</strong>
+            </div>
+          </div>
+        </div>
+
+        <form onSubmit={handleMatch}>
+          <div className="match-toolbar">
+            <div className="toolbar-left">
+              <div className="live-indicator">
+                <span className="live-dot"></span>
+                Match List
+              </div>
+            </div>
+
+            <div className="toolbar-right">
+              <button
+                type="button"
+                className="select-all-btn"
+                onClick={autoSelectAllMatches}
+              >
+                Select All
+              </button>
+
+              <button
+                className="save-match-btn"
+                type="submit"
+                disabled={selectedCount === 0}
+              >
+                <span className="save-icon">✓</span>
                 Save Match
+                {selectedCount > 0 && (
+                  <span className="save-count">
+                    {selectedCount}
+                  </span>
+                )}
               </button>
             </div>
-            <table className="table table-bordered">
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">Matches</th>
-                  <th scope="col">Open Date</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {matches.map((match: IMatch, index: number) => {
-                  // if (match?.series?.id == '1') return
-                  return (
-                    <tr key={index}>
-                      <td>{match.name}</td>
-                      {/* { match?.series?.id == '1' ?
-                      <td>{new Date(new Date(match?.matchDateTime).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })).toLocaleString()}</td>
-: */}
-                      {/* // <td>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(match?.matchDateTime))}</td>  */}
+          </div>
 
-                      {/* <td>{moment(match?.matchDateTime).format(dateFormat)}</td> univ */}
-                      <td>{convertUTCtoIST(match?.matchDateTime)}</td>
+          <div className="matches-table-card">
+            <div className="matches-table-wrapper">
+              <table className="matches-table">
+                <thead>
+                  <tr>
+                    <th>
+                      <span className="table-heading">
+                        Match
+                      </span>
+                    </th>
+                    <th>
+                      <span className="table-heading">
+                        Open Date
+                      </span>
+                    </th>
+                    <th className="action-heading">
+                      <span className="table-heading">
+                        Status
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
 
-                      <td>
-                        <input
-                          type={"checkbox"}
-                          name={match.name}
-                          onChange={(e) => selectMatch(e, index)}
-                          value={match.name || ""}
-                          checked={match.active}
-                        />
+                <tbody>
+                  {matches.length > 0 ? (
+                    matches.map(
+                      (match: IMatch, index: number) => (
+                        <tr
+                          key={
+                            (match as any).matchId || index
+                          }
+                          className={
+                            match.active
+                              ? "match-row selected-row"
+                              : "match-row"
+                          }
+                        >
+                          <td data-label="Match">
+                            <div className="match-info">
+                              <div className="match-icon">
+                                ⚡
+                              </div>
+
+                              <div className="match-title-area">
+                                <span className="match-title">
+                                  {match.name}
+                                </span>
+
+                                <span className="match-subtitle">
+                                  Match ID:{" "}
+                                  {(match as any).matchId ||
+                                    "N/A"}
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td data-label="Open Date">
+                            <div className="date-box">
+                              <span className="calendar-icon">
+                                ◷
+                              </span>
+
+                              <span>
+                                {convertUTCtoIST(
+                                  match?.matchDateTime
+                                )}
+                              </span>
+                            </div>
+                          </td>
+
+                          <td
+                            data-label="Status"
+                            className="action-cell"
+                          >
+                            <label className="match-switch">
+                              <input
+                                type="checkbox"
+                                name={match.name}
+                                onChange={(e) =>
+                                  selectMatch(e, index)
+                                }
+                                value={match.name || ""}
+                                checked={match.active}
+                              />
+
+                              <span className="switch-slider">
+                                <span className="switch-circle"></span>
+                              </span>
+                            </label>
+
+                            <span
+                              className={
+                                match.active
+                                  ? "status-text active-text"
+                                  : "status-text inactive-text"
+                              }
+                            >
+                              {match.active
+                                ? "Selected"
+                                : "Inactive"}
+                            </span>
+                          </td>
+                        </tr>
+                      )
+                    )
+                  ) : (
+                    <tr>
+                      <td colSpan={3}>
+                        <div className="empty-state">
+                          <div className="empty-icon">
+                            ◌
+                          </div>
+
+                          <h3>No Matches Found</h3>
+
+                          <p>
+                            There are currently no matches
+                            available for this sport.
+                          </p>
+                        </div>
                       </td>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </form>
-        </div>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
+
 export default MatchesPage;
