@@ -73,7 +73,7 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                 </div>
                 <div className='row form-group'>
                   <div className='col-md-4'>
-                    <label> Min Limit</label>
+                    <label>Bookmaker Button Min Limit</label>
                   </div>
                   <div className='col-md-8'>
                     <input
@@ -88,7 +88,7 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                 </div>
                 <div className='row form-group'>
                   <div className='col-md-4'>
-                    <label> Max Limit</label>
+                    <label> Bookmaker Button Max Limit</label>
                   </div>
                   <div className='col-md-8'>
                     <input
@@ -105,7 +105,7 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                   <Fragment>
                     <div className='row form-group'>
                       <div className='col-md-4'>
-                        <label>Fancy Min Limit</label>
+                        <label>Fancy Button Min Limit</label>
                       </div>
                       <div className='col-md-8'>
                         <input
@@ -121,7 +121,7 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                     </div>
                     <div className='row form-group'>
                       <div className='col-md-4'>
-                        <label>Fancy Max Limit</label>
+                        <label>Fancy Button Max Limit</label>
                       </div>
                       <div className='col-md-8'>
                         <input
@@ -135,11 +135,28 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                         />
                       </div>
                     </div>
+                     <div className='row form-group'>
+                      <div className='col-md-4'>
+                        <label>Fancy Total Max Limit</label>
+                      </div>
+                      <div className='col-md-8'>
+                        <input
+                          type='text'
+                          required
+                          value={matchSetting.fancyTotalLimit || ''}
+                          onChange={onChangeMatchSetting}
+                          name='fancyTotalLimit'
+                          className='form-control intr'
+                          defaultValue={250000}
+                        />
+                      </div>
+                    </div>
                   </Fragment>
                 )}
                 <div className='row form-group'>
                   <div className='col-md-4'>
-                    <label>Book Min Limit</label>
+                    <label>Bookmaker 
+     Total Min Limit</label>
                   </div>
                   <div className='col-md-8'>
                     <input
@@ -155,7 +172,7 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                 </div>
                 <div className='row form-group'>
                   <div className='col-md-4'>
-                    <label>Book Max Limit</label>
+                    <label>Bookmaker Total Max Limit</label>
                   </div>
                   <div className='col-md-8'>
                     <input
@@ -170,7 +187,7 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                   </div>
                 </div>
               </div>
-              <div className='col-sm-6'>
+              {/* <div className='col-sm-6'>
                 <div className='text-center m-xl-3'>
                   <strong>Off Play</strong>
                 </div>
@@ -269,6 +286,24 @@ const BetMaxLimitModal = ({ showDialog, closeModal, selectedMatch }: Props) => {
                       name='offPlayBookMaxLimit'
                       className='form-control intr'
                       defaultValue={1}
+                    />
+                  </div>
+                </div>
+              </div> */}
+
+              <div className='col-md-12'>
+                <div className='row form-group'>
+                  <div className='col-md-4'>
+                    <label>Bet Delay (ms)</label>
+                  </div>
+                  <div className='col-md-8'>
+                    <input
+                      type='number'
+                      defaultValue={1000}
+                      className='form-control intr'
+                      value={matchSetting.betDelay || 1000}
+                      onChange={onChangeMatchSetting}
+                      name='betDelay'
                     />
                   </div>
                 </div>
