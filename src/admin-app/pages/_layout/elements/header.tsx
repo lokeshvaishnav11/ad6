@@ -1102,6 +1102,25 @@ const Header = () => {
                                 </CustomLink>
                               </li>
 
+                                 <li className="border-b-4 border-black pb-2">
+                                <CustomLink
+                                  // onClick={() => setDropdownOpen4(!dropdownOpen4)}
+                                  onClick={() => {
+                                    toggleDrawer();
+                                    setActiveMenu("NC");
+                                  }}
+                                  to="/notice"
+                                  className={`dropdown-item ${
+                                    activeMenu === "NC" ? "bg-active" : ""
+                                  }`}
+                                >
+                                  <b className="text-white  mobile-style md:text-lg text-xs md:flex md:flex-row flex flex-col items-center gap-1">
+                                    <ListIcon className="text-warning side-bar-icon" />
+                                    Notice
+                                  </b>
+                                </CustomLink>
+                              </li>
+
                         </div>
                       ) : (
                         ""

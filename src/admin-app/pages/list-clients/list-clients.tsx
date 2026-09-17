@@ -1449,16 +1449,16 @@ const ListClients = () => {
                                   )} */}
 
 
-                                  {/* <a
+                                  <a
                                     className="border-b"
-                                    style={{ color: "#28a745" }}
+                                    style={{ color: "#870dbb" }}
                                     onClick={() => handleOpenMatkaLimit(user)}
                                   >
                                     <BorderColorIcon /> Matka Limit
 
-                                  </a> */}
+                                  </a>
 
-                                  {/* {openMatkaUserId === user._id && (
+                                  {openMatkaUserId === user._id && (
                                     <div
                                       className="input-group input-group-sm "
                                       style={{ maxWidth: "250px" }}
@@ -1486,7 +1486,7 @@ const ListClients = () => {
                                         Update
                                       </button>
                                     </div>
-                                  )} */}
+                                  )}
 
                                   {/* isAdmin(user) && */}
                                   {/* {userState?.user?.role == RoleType.admin && (
