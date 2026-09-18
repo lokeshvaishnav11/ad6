@@ -1547,7 +1547,7 @@ const ListClients = () => {
                                   )}
 
                                   {/* )}  */}
-                                  {/* {userState?.user?.role == RoleType.admin && (
+                                  {userState?.user?.role == RoleType.admin && (
                                     <a
                                       className="border-b pb-2"
                                       // style={{ display: "none" }}
@@ -1558,7 +1558,7 @@ const ListClients = () => {
                                     >
                                       <BorderColorIcon /> Min Max Detail
                                     </a>
-                                  )} */}
+                                  )}
 
                                   
 
