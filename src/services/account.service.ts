@@ -59,5 +59,29 @@ class AccountService {
   getProfitLoss(page: number, filter: any) {
     return api.post(`profit-loss?page=${page}`, filter)
   }
+  casinoProfitLoss(
+  page = 1,
+  limit = 100,
+  startDate = "",
+  endDate = ""
+) {
+  return api.get(
+    `/casino-profit-loss?page=${page}&limit=${limit}&startDate=${startDate}&endDate=${endDate}`
+  );
+}
+
+casinoProfitLossDetails(
+  matchId: string,
+  date: string
+) {
+  return api.get(
+    `/casino-profit-loss-details?matchId=${encodeURIComponent(
+      matchId
+    )}&date=${encodeURIComponent(
+      date
+    )}`
+  );
+}
+
 }
 export default new AccountService()

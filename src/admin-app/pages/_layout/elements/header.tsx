@@ -533,7 +533,7 @@ const Header = () => {
                     </CustomLink>
                   </li>
 
-                  {/* <li
+                  <li
                     className={`nav-item border-b md:w-60 w-fit ${
                       activeMenu === "Cass" ? "bg-active" : ""
                     } `}
@@ -552,7 +552,7 @@ const Header = () => {
                         Casino P/L
                       </b>
                     </CustomLink>
-                  </li> */}
+                  </li>
 
                   <li
                     className={`nav-item border-b md:w-60 w-fit ${
