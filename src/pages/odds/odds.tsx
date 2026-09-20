@@ -196,23 +196,40 @@ const Odds = () => {
   //   );
   // }
   // };
-
    const scoreBoard = () => {
-    if (currentMatch && currentMatch.sportId == "4333")
-      return (
-        <Score
-          matchId={currentMatch?.matchId}
-          isT10={currentMatch?.isT10 || false}
-        />
-      );
-    else if (currentMatch)
-      return (
+    if (currentMatch) {
+    return (
+      <div style={{ position: "relative", width: "100%" }}>
+        {/* Full Score Icon */}
+        <div
+          onClick={toggleFullScore}
+          style={{
+            position: "absolute",
+            top: "15px",
+            right: "8px",
+            zIndex: 10,
+            cursor: "pointer",
+            background: "#000",
+            color: "#fff",
+            padding: "6px 10px",
+            borderRadius: "4px",
+            fontSize: "12px"
+          }}
+        >
+        </div>
+
         <iframe
-          style={{ width: "100%", height: "auto" }}
-          // src={`https://card.hr08bets.in/api/getScoreData?event_id=${currentMatch?.matchId}`}
-          src={`https://scorecard.avrkhub.in/?v=2&btid=${currentMatch?.matchId}&etid=4`}  
-        ></iframe>
-      );
+          style={{
+            width: "100%",
+            height: "auto",
+            minHeight: isFullScore ? "550px" : "269px",
+            transition: "min-height 0.3s ease"
+          }}
+          src={`https://score.vkmster.com/scorecard?matchName=${currentMatch?.name}&date=${currentMatch?.matchDateTime}`}
+        />
+      </div>
+    );
+  }
   };
 
   const t10Tv = (height: string) => {
@@ -255,7 +272,7 @@ const Odds = () => {
                 style={{ width: "100%", height: "250px" }}
                 // src={`${tvUrl}${currentMatch?.matchId}`}
                 // src={`https://playg3.livestream11.com/user/526414545/unknown/27.0.178.13/c590458e-6d81-450e-8a6d-119bc2234267`}
-                 src={`https://stream-s-43.uhdmovies.online/sports-stream?btid=${currentMatch?.matchId}`}
+                 src={`https://tv.777exch.live/sports/${currentMatch?.matchId}`}
               ></iframe>
               LIVE TV
             </div>
@@ -265,7 +282,7 @@ const Odds = () => {
               <iframe
                 style={{ width: "100%", height: "250px" }}
                 // src={`${tvUrl}${currentMatch?.matchId}`}
-                src={`https://stream-s-43.uhdmovies.online/sports-stream?btid=${currentMatch?.matchId}`}
+                 src={`https://tv.777exch.live/sports/${currentMatch?.matchId}`}
               ></iframe>
             </div>
           )}
