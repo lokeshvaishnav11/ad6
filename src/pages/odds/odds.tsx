@@ -225,7 +225,7 @@ const Odds = () => {
             minHeight: isFullScore ? "550px" : "269px",
             transition: "min-height 0.3s ease"
           }}
-          src={`https://score.vkmster.com/scorecard?matchName=${currentMatch?.name}&date=${currentMatch?.matchDateTime}`}
+          src={`https://score.vkmster.com/main?matchName=${currentMatch?.name}&date=${currentMatch?.matchDateTime}`}
         />
       </div>
     );
