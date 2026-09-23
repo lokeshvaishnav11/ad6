@@ -146,25 +146,26 @@ const ListClients = () => {
 
   // console.log(useParams(), "my all params")
 
-  // Close modal when clicking outside
+  // Close Action popup when clicking/tapping anywhere outside it.
+  // Using closest() is more reliable here because the action popup is rendered
+  // inside a mapped table row and a single React ref can be reassigned.
   useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setExpandedUserId(null); // Close modal
+    const handleOutsideClick = (event: globalThis.MouseEvent | PointerEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+
+      const clickedInsidePopup = target.closest(".actions-td");
+      const clickedActionButton = target.closest("[data-action-toggle='true']");
+
+      if (!clickedInsidePopup && !clickedActionButton) {
+        setExpandedUserId(null);
       }
     };
 
-    // Add event listener to document
-    // document.addEventListener('click', handleOutsideClick);
+    document.addEventListener("pointerdown", handleOutsideClick);
 
-    // Clean up event listener on unmount
     return () => {
-      // document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener("pointerdown", handleOutsideClick);
     };
   }, []);
 
@@ -1385,6 +1386,7 @@ const ListClients = () => {
                             <td className="relative-btn">
                               {" "}
                               <button
+                                data-action-toggle="true"
                                 className=""
                                 onClick={() =>
                                   user._id && handleToggle(user._id)
@@ -1400,14 +1402,6 @@ const ListClients = () => {
                                 <p className="bg-gray-800 hidden text-white p-2">
                                   Action for the user - {user.username}
                                 </p>
-                                <button
-                                  className="closed bg-gray-800 text-white"
-                                  onClick={() =>
-                                    user._id && handleToggle(user._id)
-                                  }
-                                >
-                                  <CloseButton className="text-white" />
-                                </button>
                                 <div
                                   className="actions-container"
                                   style={{  }}
@@ -1541,7 +1535,7 @@ const ListClients = () => {
                                           : "d-none"
                                         } border-b`}
                                     >
-                                      <PersonRemoveIcon /> Deactivate{" "}
+                                      <PersonRemoveIcon /> Delete User{" "}
                                       {`(${user.username})`}
                                     </a>
                                   )}

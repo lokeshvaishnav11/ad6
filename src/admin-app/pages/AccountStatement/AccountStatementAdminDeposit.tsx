@@ -829,10 +829,7 @@ const AccountStatementAdminDeposit = () => {
         .map((stmt: any, index: number) => {
           closingbalance = closingbalance + stmt.amount;
 
-          const rowStyle =
-            stmt.debit >= 0
-              ? { backgroundColor: "green", color: "white" }
-              : { backgroundColor: "red", color: "white" };
+          const rowStyle = { backgroundColor: "transparent", color: "#344454" };
 
           return (
             <tr key={`${stmt._id}${index}`}>
@@ -874,10 +871,37 @@ const AccountStatementAdminDeposit = () => {
 
   return (
     <>
+      <style>{`
+        .deposit-statement-premium-page { padding: 14px; }
+        .deposit-statement-card { background:#fff; border:1px solid #e1e7ed; border-radius:14px; padding:0 !important; overflow:hidden; box-shadow:0 5px 18px rgba(13,38,65,.08); }
+        .deposit-statement-card-header { min-height:58px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:linear-gradient(135deg,#031d38 0%,#052a51 50%,#084a78 100%); color:#fff; }
+        .deposit-statement-title { display:flex; align-items:center; gap:10px; font-size:15px; font-weight:800; }
+        .deposit-statement-title i { width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:9px; background:rgba(255,255,255,.12); }
+        .deposit-statement-user { display:flex; align-items:center; gap:6px; padding:7px 10px; border-radius:8px; background:rgba(255,255,255,.1); font-size:11px; color:rgba(255,255,255,.82); }
+        .deposit-statement-table-wrap { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+        #customers1.deposit-statement-table { width:100%; min-width:780px; margin:0; border-collapse:collapse; background:#fff; }
+        #customers1.deposit-statement-table thead th { padding:12px 10px !important; background:#edf2f6 !important; color:#526170 !important; border:0 !important; border-bottom:1px solid #dce3e8 !important; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.35px; }
+        #customers1.deposit-statement-table tbody td { padding:11px 10px !important; background:#fff !important; color:#3d4c5a !important; border:0 !important; border-bottom:1px solid #edf0f2 !important; font-size:11px; vertical-align:middle; }
+        #customers1.deposit-statement-table tbody tr:hover td { background:#f8fafb !important; }
+        #customers1.deposit-statement-table td.green { color:#07865f !important; font-weight:800; }
+        #customers1.deposit-statement-table td.red { color:#d74350 !important; font-weight:800; }
+        #customers1.deposit-statement-table .label-buttonccc { display:inline-flex; align-items:center; padding:7px 10px; border-radius:7px; background:#eaf2f8; color:#075182; font-weight:700; cursor:pointer; transition:.15s; }
+        #customers1.deposit-statement-table .label-buttonccc:hover { background:#dceaf4; }
+        .deposit-statement-pagination { display:flex; justify-content:flex-end; gap:5px; margin:14px !important; padding:0; list-style:none; flex-wrap:wrap; }
+        .deposit-statement-pagination li a { min-width:32px; height:32px; padding:0 9px; display:flex; align-items:center; justify-content:center; border:1px solid #dce2e7; border-radius:7px; background:#fff; color:#4d5c69; font-size:10px; font-weight:700; text-decoration:none; cursor:pointer; }
+        .deposit-statement-pagination li.active a { border-color:#052a51; background:linear-gradient(135deg,#052a51,#096197); color:#fff; }
+        .deposit-bet-premium-overlay { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:15px; background:rgba(4,14,28,.76); backdrop-filter:blur(5px); z-index:99999; }
+        .deposit-bet-premium-modal { width:100%; max-width:1100px; max-height:90vh; outline:none; }
+        .deposit-bet-premium-card { max-height:90vh; border:0 !important; border-radius:14px !important; overflow:hidden; box-shadow:0 25px 70px rgba(0,0,0,.32); }
+        .deposit-bet-premium-header { min-height:58px; padding:12px 16px !important; background:linear-gradient(135deg,#031d38,#052a51,#084a78); color:#fff; border:0 !important; }
+        .deposit-bet-premium-header h5 { margin:0; display:flex; align-items:center; gap:9px; color:#fff; font-size:14px; font-weight:800; }
+        .deposit-bet-premium-header .close { color:#fff !important; opacity:1 !important; text-shadow:none; }
+        @media(max-width:767px){ .deposit-statement-premium-page{padding:8px;} .deposit-statement-card-header{padding:10px 12px;min-height:52px;} .deposit-statement-title{font-size:12px;} .deposit-statement-user{max-width:145px;overflow:hidden;} .deposit-statement-pagination{justify-content:center;margin:10px !important;} .deposit-bet-premium-overlay{padding:8px;} }
+      `}</style>
       {mobileSubheader.subheaderdesktopadmin(
         "Deposit Amount Account Statements"
       )}
-      <div className="container-fluid">
+      <div className="container-fluid deposit-statement-premium-page">
         <div className="row">
           <div
             className={
@@ -957,16 +981,21 @@ const AccountStatementAdminDeposit = () => {
                 </div>
               </form>
             </div>
-            <div className="card-body">
-              <div className="table-responsive">
-                <table className="text-center" id="customers1">
+            <div className="card-body deposit-statement-card">
+              <div className="deposit-statement-card-header">
+                <div className="deposit-statement-title"><i className="fas fa-wallet"></i><span>Deposit Amount Statement</span></div>
+                <div className="deposit-statement-user"><i className="far fa-user"></i><span>{filterdata.userId || "Account"}</span></div>
+              </div>
+              <div className="table-responsive deposit-statement-table-wrap">
+                <table className="text-center deposit-statement-table" id="customers1">
                   <thead>
                     <tr>
                       <th
                         className="text-black"
                         style={{
                           width: "10%",
-                          background: "darkgoldenrod",
+                          background: "#052a51",
+                          color: "#ffffff",
                           textAlign: "center",
                           whiteSpace: "nowrap",
                         }}
@@ -977,7 +1006,8 @@ const AccountStatementAdminDeposit = () => {
                         className="text-black"
                         style={{
                           width: "20%",
-                          background: "darkgoldenrod",
+                          background: "#052a51",
+                          color: "#ffffff",
                           textAlign: "center",
                           whiteSpace: "nowrap",
                         }}
@@ -988,7 +1018,8 @@ const AccountStatementAdminDeposit = () => {
                         className="text-black"
                         style={{
                           width: "10%",
-                          background: "darkgoldenrod",
+                          background: "#052a51",
+                          color: "#ffffff",
                           textAlign: "center",
                         }}
                       >
@@ -998,18 +1029,21 @@ const AccountStatementAdminDeposit = () => {
                         className="text-black"
                         style={{
                           width: "10%",
-                          background: "darkgoldenrod",
+                          background: "#052a51",
+                          color: "#ffffff",
                           textAlign: "center",
                         }}
                       >
                         Debit
                       </th>
-                      {/* <th className="text-black" style={{ width: '10%', background: "darkgoldenrod", textAlign: 'center' }}>Balance</th> */}
+                      {/* <th className="text-black" style={{ width: '10%', background: "#052a51",
+                          color: "#ffffff", textAlign: 'center' }}>Balance</th> */}
                       <th
                         className="text-black"
                         style={{
                           width: "10%",
-                          background: "darkgoldenrod",
+                          background: "#052a51",
+                          color: "#ffffff",
                           textAlign: "center",
                         }}
                       >
@@ -1019,7 +1053,8 @@ const AccountStatementAdminDeposit = () => {
                         className="text-black"
                         style={{
                           width: "45%",
-                          background: "darkgoldenrod",
+                          background: "#052a51",
+                          color: "#ffffff",
                           textAlign: "center",
                         }}
                       >
@@ -1064,7 +1099,7 @@ const AccountStatementAdminDeposit = () => {
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
                 pageCount={pageCount}
-                containerClassName={"pagination"}
+                containerClassName={"pagination deposit-statement-pagination"}
                 activeClassName={"active"}
                 previousLabel={"Prev"}
                 breakClassName={"break-me"}
@@ -1080,12 +1115,13 @@ const AccountStatementAdminDeposit = () => {
           setIsOpen(false);
         }}
         contentLabel="Set Max Bet Limit"
-        className={"col-md-12"}
+        className="deposit-bet-premium-modal"
+        overlayClassName="deposit-bet-premium-overlay"
         ariaHideApp={false}
       >
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5>Bets</h5>
+        <div className="modal-content deposit-bet-premium-card">
+          <div className="modal-header deposit-bet-premium-header">
+            <h5><i className="fas fa-history"></i> Bet Details</h5>
             <button
               onClick={() => setIsOpen(false)}
               className="close float-right"
